@@ -1,9 +1,14 @@
-Repositorio del proyecto Puravida NFT
+# Repositorio del proyecto Puravida NFT
 
-En la seccion de projects de Github esta nuestro plan para resolver los sprints
+## Integrantes:
+- Dayana Marín B64096
+- Diego Trejos B57233
+- Jennifer Villalobos B67751
 
-En los issues se ven a quien se le asigno cada tarea y para cual sprint o milestone queremos completarla
+En la sección Projects se encuentra nuestro plan para resolver los sprints.
 
-El prototipo esta en: https://www.figma.com/file/3VJrqFJ8Vhbjiz7IFtu2ux/PuraVidaNFT?node-id=2%3A4
+En los Issues se puede observar la asignación de cada tarea y para cuál sprint o milestone se planea completarla.
 
-El diagrama de la BD esta en: https://drive.google.com/file/d/1-sowY9V8WOS2b18IVnr2_p-JdImTFVYH/view?usp=sharing
+El prototipo de la página web se encuentra en: https://www.figma.com/file/3VJrqFJ8Vhbjiz7IFtu2ux/PuraVidaNFT?node-id=2%3A4
+
+El diagrama de la Base de Datos se encuentra en: https://drive.google.com/file/d/1-sowY9V8WOS2b18IVnr2_p-JdImTFVYH/view?usp=sharing
