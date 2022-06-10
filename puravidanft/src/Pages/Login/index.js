@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { postLogin } from "../../Slices/userSlice";
 
 export default function Login() {
@@ -17,45 +17,60 @@ export default function Login() {
     <Navigate to="/" />
   ) : (
     <div className="flex items-center justify-center h-screen">
-      <div className="text-center">
-        <div className="mb-4">
-          <h1 className="text-3xl font-bold">¡Bienvenido!</h1>
+      <div className="border">
+        <div className="text-center">
+          <div className="mb-4">
+            <h1 className="text-3xl font-bold">¡Bienvenido!</h1>
+          </div>
+          <div className="mb-4">
+            <input
+              placeholder="Email"
+              className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
+              value={username}
+              onChange={(evt) => {
+                setUsername(evt.target.value);
+              }}
+            />
+          </div>
+          <div className="mb-4">
+            <input
+              placeholder="Contraseña"
+              className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
+              type="password"
+              value={password}
+              onChange={(evt) => {
+                setPassword(evt.target.value);
+              }}
+            />
+          </div>
+          {errorMessage && <span className="text-red-500">{errorMessage}</span>}
+
+          <div className="mb-4">
+            <Link to={"/"}>¿Olvidó su contraseña?</Link>
+          </div>
+
+          <div className="mb-4">
+            <button
+              className="h-[48px] w-full rounded-md bg-purple-500 text-white"
+              onClick={() => {
+                dispatch(
+                  postLogin({
+                    username,
+                    password,
+                  })
+                );
+              }}
+            >
+              Iniciar Sesión
+            </button>
+          </div>
+
+          <div className="mb-4">
+            <button className="h-[48px] w-full rounded-md bg-gray-500 text-white">
+              Crear cuenta
+            </button>
+          </div>
         </div>
-        <div className="mb-4">
-          <input
-            placeholder="Email"
-            className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
-            value={username}
-            onChange={(evt) => {
-              setUsername(evt.target.value);
-            }}
-          />
-        </div>
-        <div className="mb-4">
-          <input
-            placeholder="Contraseña"
-            className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
-            type="password"
-            value={password}
-            onChange={(evt) => {
-              setPassword(evt.target.value);
-            }}
-          />
-        </div>
-        {errorMessage && <span className="text-red-500">{errorMessage}</span>}
-        <button
-          className="h-[48px] w-full rounded-md bg-sky-500 text-white"
-          onClick={() => {
-            dispatch(
-              postLogin({
-                username,
-                password,
-              })
-            );
-          }}
-        >
-          Iniciar Sesión
-        </button>
       </div>
     </div>
   );
