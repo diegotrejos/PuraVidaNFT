@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate, Link, useNavigate } from "react-router-dom";
 import { postLogin } from "../../Slices/userSlice";
 
 export default function Login() {
@@ -12,6 +12,7 @@ export default function Login() {
   const errorMessage = useSelector((state) => state.user.errorMessage);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return userIsLoggedIn ? (
     <Navigate to="/" />
@@ -46,12 +47,12 @@ export default function Login() {
           {errorMessage && <span className="text-red-500">{errorMessage}</span>}
 
           <div className="mb-4">
-            <Link to={"/"}>¿Olvidó su contraseña?</Link>
+            <Link to={"/recoverpassword"}>¿Olvidó su contraseña?</Link>
           </div>
 
           <div className="mb-4">
             <button
-              className="h-[48px] w-full rounded-md bg-purple-500 text-white"
+              className="h-[48px] w-[150px] rounded-md bg-purple-500 text-white"
               onClick={() => {
                 dispatch(
                   postLogin({
@@ -66,7 +67,8 @@ export default function Login() {
           </div>
 
           <div className="mb-4">
-            <button className="h-[48px] w-full rounded-md bg-gray-500 text-white">
+            <button className="h-[48px] w-[150px] rounded-md bg-gray-500 text-white"
+            onClick={() => navigate("/signup")}>
               Crear cuenta
             </button>
           </div>
