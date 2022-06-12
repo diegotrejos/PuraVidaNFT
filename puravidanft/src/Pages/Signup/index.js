@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -12,10 +11,6 @@ export default function Login() {
 
   const theme = useSelector((state) => state.app.theme);
   const errorMessage = useSelector((state) => state.user.errorMessage);
-
-  const navigateToLogin = () => {
-    navigate("/login");
-  };
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -77,8 +72,7 @@ export default function Login() {
           <div className="mb-4">
             <button
               className="h-[48px] w-[150px] rounded-md bg-gray-500 text-white"
-              onClick={navigateToLogin}
-            >
+              onClick={() => navigate("/login")}>
               Cancelar
             </button>
           </div>
