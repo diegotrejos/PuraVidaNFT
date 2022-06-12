@@ -40,7 +40,7 @@ export default function EditAccount() {
           </div>
           <div className="mb-4">
               <button className="h-[48px] w-[300px] rounded-md bg-purple-500 text-white"
-              onClick={() => navigate("/")}>
+              onClick={() => navigate("/chancepassword")}>
                   Cambiar Contraseña
               </button>
           </div>
@@ -53,8 +53,7 @@ export default function EditAccount() {
           </div>
           <div className="mb-4 flex justify-center ">
             <button
-              className="h-[48px] w-[300px] rounded-md bg-gray-500 text-white"
-              onClick={() => navigate("/login")}>
+              className="h-[48px] w-[300px] rounded-md bg-gray-500 text-white">
               Cambiar foto
             </button>
             </div>

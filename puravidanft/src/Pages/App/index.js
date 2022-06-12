@@ -10,6 +10,7 @@ import Admin from "../Admin";
 import Signup from "../Signup";
 import RecoverPassword from "../RecoverPassword";
 import EditAccount from "../EditAccount";
+import ChancePassword from "../ChancePassword";
 
 function App() {
   const loading = useSelector(
@@ -34,6 +35,7 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="recoverpassword" element={<RecoverPassword />} />
           <Route path="editaccount" element={<EditAccount />} />
+          <Route path="chancepassword" element={<ChancePassword />} />
         </Routes>
       </BrowserRouter>
     </MainContainer>
