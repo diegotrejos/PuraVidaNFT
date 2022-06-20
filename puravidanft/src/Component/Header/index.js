@@ -55,7 +55,7 @@ function Header() {
           <Logo width="w-20" height="h-20" />
         </div>
         <div className="w-1/2 flex gap-3 items-center justify-end">
-          <p>{user && user.name ? ` ¡Bienvenido ${user.name}!` : "¡Bienvenido!"}</p>
+          <p>{user ? ` ¡Bienvenido ${user}!` : "¡Bienvenido!"}</p>
           <BiSearch
             onClick={() => {
               setShowSearch(true);
