@@ -1,6 +1,7 @@
 import Header from "../../Component/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../Slices/cartSlice";
+import Navbar from "../../Component/Navbar/index.js";
 
 const products = [
   {
@@ -33,7 +34,8 @@ const products = [
   },
 ];
 
-function Home() {
+function Inicio() {
+
 
   const theme = useSelector(
     (state) => state.app.theme
@@ -43,7 +45,10 @@ function Home() {
 
   return (
     <div>
-      <Header />
+      <Navbar  />
+      <div className="flex gap-4 px-4 md:px-8 lg:px-20 py-4">
+          <a>Trending</a> 
+      </div>
       <div className="flex gap-4 px-4 md:px-8 lg:px-20 py-4">
         {products.map((p) => {
           return (
@@ -64,4 +69,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Inicio;
