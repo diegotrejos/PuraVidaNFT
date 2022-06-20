@@ -48,11 +48,11 @@ export default function Navbar(props) {
         </div>
 
         <div className="flex flex-col lg:flex-row lg:ml-auto">
-          <button  onClick={() => navigate("/login")}>          
+          <button  onClick={() => navigate("/editaccount")}>          
             <img
             className={`${"w-20"} ${"h-20"}`}
             alt="Imagen de Usuario"
-            src="https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528"
+            src="https://i.pinimg.com/736x/a6/5e/ba/a65ebae219c97f8624f32140e80889a9.jpg"
           />
           </button>
 
