@@ -1,27 +1,33 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Link, useNavigate } from "react-router-dom";
-import { login } from "../../Slices/userSlice";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const theme = useSelector((state) => state.app.theme);
-  const userIsLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const errorMessage = useSelector((state) => state.user.errorMessage);
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  return userIsLoggedIn ? (
-    <Navigate to="/" />
-  ) : (
+  return (
     <div className="flex items-center justify-center h-screen">
       <div className="border">
         <div className="text-center">
           <div className="mb-4">
-            <h1 className="text-3xl font-bold">¡Bienvenido!</h1>
+            <h1 className="text-3xl font-bold">Registrarse</h1>
+          </div>
+          <div className="mb-4">
+            <input
+              placeholder="Nombre"
+              className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
+              value={name}
+              onChange={(evt) => {
+                setName(evt.target.value);
+              }}
+            />
           </div>
           <div className="mb-4">
             <input
@@ -44,34 +50,30 @@ export default function Login() {
               }}
             />
           </div>
+          <div className="mb-4">
+            <input
+              placeholder="Confirmar contraseña"
+              className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
+              type="password"
+              value={confirmPassword}
+              onChange={(evt) => {
+                setConfirmPassword(evt.target.value);
+              }}
+            />
+          </div>
           {errorMessage && <span className="text-red-500">{errorMessage}</span>}
 
           <div className="mb-4">
-            <Link to={"/recoverpassword"}>¿Olvidó su contraseña?</Link>
-          </div>
-
-          <div className="mb-4">
-            <button
-              className="h-[48px] w-[150px] rounded-md bg-purple-500 text-white"
-              onClick={() => {
-                console.log('antes del dispatch');
-                dispatch(
-                  login(
-                    username,
-                    password,
-                  )
-                );
-                console.log('logged in: ' + userIsLoggedIn);
-              }}
-            >
-              Iniciar Sesión
+            <button className="h-[48px] w-[150px] rounded-md bg-purple-500 text-white">
+              Crear cuenta
             </button>
           </div>
 
           <div className="mb-4">
-            <button className="h-[48px] w-[150px] rounded-md bg-gray-500 text-white"
-            onClick={() => navigate("/signup")}>
-              Crear cuenta
+            <button
+              className="h-[48px] w-[150px] rounded-md bg-gray-500 text-white"
+              onClick={() => navigate("/login")}>
+              Cancelar
             </button>
           </div>
         </div>
