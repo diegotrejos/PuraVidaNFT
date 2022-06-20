@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Link, useNavigate } from "react-router-dom";
-import { postLogin } from "../../Slices/userSlice";
+import { login } from "../../Slices/userSlice";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const theme = useSelector((state) => state.app.theme);
-  const userIsLoggedIn = useSelector((state) => state.user.userIsLoggedIn);
+  const userIsLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const errorMessage = useSelector((state) => state.user.errorMessage);
 
   const dispatch = useDispatch();
@@ -54,12 +54,14 @@ export default function Login() {
             <button
               className="h-[48px] w-[150px] rounded-md bg-purple-500 text-white"
               onClick={() => {
+                console.log('antes del dispatch');
                 dispatch(
-                  postLogin({
+                  login(
                     username,
                     password,
-                  })
+                  )
                 );
+                console.log('logged in: ' + userIsLoggedIn);
               }}
             >
               Iniciar Sesión
