@@ -4,9 +4,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainContainer from "../../Component/MainContainer";
 import Spinner from "../../Component/Spinner";
 import { fetchPromo } from "../../Slices/appSlice";
-import Home from "../Home";
+import Inicio from "../Inicio";
 import Login from "../Login";
 import Admin from "../Admin";
+import Explorar from "../Explorar";
+import Subir from "../Subir";
 import Signup from "../Signup";
 import RecoverPassword from "../RecoverPassword";
 import EditAccount from "../EditAccount";
@@ -30,7 +32,10 @@ function App() {
     <MainContainer>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Inicio />} />
+          <Route path="inicio" element={<Inicio />} />
+          <Route path="explorar" element={<Explorar />} />
+          <Route path="subir" element={<Subir />} />
           <Route path="login" element={<Login />} />
           <Route path="admin" element={<Admin />} />
           <Route path="signup" element={<Signup />} />
