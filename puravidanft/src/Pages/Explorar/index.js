@@ -44,8 +44,7 @@ function Explorar() {
   const dispatch = useDispatch();
 
   return (
-    <div>
-     
+    <div>  
       <Navbar  />
       <div className="flex gap-4 px-4 md:px-8 lg:px-20 py-4">
           <a>Categorias</a> 
