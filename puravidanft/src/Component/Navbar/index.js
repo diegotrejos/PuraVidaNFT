@@ -19,7 +19,7 @@ export default function Navbar(props) {
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <button
             className={
-              "text-white text-m font-bold leading-relaxed inline-block mr-4 py-7 whitespace-nowrap uppercase"
+              "text-white text-m font-bold leading-relaxed inline-block mr-5 py-7 whitespace-nowrap uppercase"
             }
             onClick={() => navigate("/inicio")}
           >
@@ -30,7 +30,7 @@ export default function Navbar(props) {
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <button
             className={
-              "text-white text-m font-bold leading-relaxed inline-block mr-4 py-7 whitespace-nowrap uppercase"
+              "text-white text-m font-bold leading-relaxed inline-block mr-5 py-7 whitespace-nowrap uppercase"
             }
             onClick={() => navigate("/explorar")}
           >
@@ -41,16 +41,16 @@ export default function Navbar(props) {
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <button
             className={
-              "text-white text-m font-bold leading-relaxed inline-block mr-4 py-7 whitespace-nowrap uppercase"
+              "text-white text-m font-bold leading-relaxed inline-block mr-5 py-7 whitespace-nowrap uppercase"
             }
-            onClick={() => navigate("/subir")}
+            onClick={() => navigate("/AploadNFT")}
           >
             Subir
           </button>
         </div>
 
         <div className="flex flex-col lg:flex-row lg:ml-auto">
-          <p className="w-full nline-block mr-4 py-7 items-center text-white text-m whitespace-nowrap">
+          <p className="w-full inline-block mr-4 py-8 items-center text-white text-m whitespace-nowrap">
             {user ? ` ¡Bienvenido ${user}!` : "¡Bienvenido!"}
           </p>
           <div className="w-full group relative">
@@ -83,7 +83,7 @@ export default function Navbar(props) {
                   </a>
                 </li>
                 <li>
-                  <a href="/login" className="block px-4 py-2 hover:bg-gray-100" onClick={() => dispatch(logout)}>
+                  <a href="/login" className="block px-4 py-2 hover:bg-gray-100" onClick={() => dispatch(logout())}>
                     Cerrar Sesión
                   </a>
                 </li>

@@ -1,4 +1,3 @@
-import Header from "../../Component/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../Slices/cartSlice";
 import Navbar from "../../Component/Navbar/index.js";
@@ -44,7 +43,8 @@ function Explorar() {
   const dispatch = useDispatch();
 
   return (
-    <div>  
+    <div>
+  
       <Navbar  />
       <div className="flex gap-4 px-4 md:px-8 lg:px-20 py-4">
           <a>Categorias</a> 
@@ -54,7 +54,7 @@ function Explorar() {
           return (
             <div key={`product_${p.id}`} className={`border ${theme.productBorder}`}>
               <div>
-                <img src={p.image} alt={p.name} />
+                <img src={p.image} alt={p.name} width={602} height={753}/>
               </div>
               <div className="p-4 text-center">
                 <p>{p.name}</p>
