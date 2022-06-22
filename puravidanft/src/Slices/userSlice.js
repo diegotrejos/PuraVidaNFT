@@ -11,6 +11,7 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.isLoggedIn = false;
+      console.log(state.isLoggedIn)
     },
     login: {
       prepare: (email, password) => {

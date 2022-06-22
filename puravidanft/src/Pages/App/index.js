@@ -14,6 +14,7 @@ import RecoverPassword from "../RecoverPassword";
 import EditAccount from "../EditAccount";
 import ChancePassword from "../ChancePassword";
 import AploadNFT from "../AploadNFT";
+import NFTDetails from "../NFTDetails";
 
 function App() {
   const loading = useSelector(
@@ -43,6 +44,7 @@ function App() {
           <Route path="editaccount" element={<EditAccount />} />
           <Route path="chancepassword" element={<ChancePassword />} />
           <Route path="aploadNFT" element={<AploadNFT />} />
+          <Route path="nftdetails" element={<NFTDetails />} />
 
         </Routes>
       </BrowserRouter>
