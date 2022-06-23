@@ -1,11 +1,17 @@
-function Logo({ width, height }) {
+function Logo() {
     return (
+    <div >
       <img
-        className={`${width || "w-20"} ${height || "h-20"}`}
+        className= "w-32 h-10"
         alt="Logo"
-        src="https://bit.ly/logo-ci0137"
+        src="https://wallpaperaccess.com/full/3899791.jpg"
       />
+      <div class = " text-white  text-m ml-4 "
+      >PuraVidaNFT</div>
+        
+    </div>
     );
+
   }
   
   export default Logo;

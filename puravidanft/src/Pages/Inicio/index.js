@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../Slices/cartSlice";
 import Navbar from "../../Component/Navbar/index.js";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../Component/Footer/index.js";
 
 const products = [
   {
@@ -45,9 +46,9 @@ function Inicio() {
     <div>
       <Navbar />
       <div className="flex gap-4 px-4 md:px-8 lg:px-20 py-4">
-        <a>Trending</a>
+        Trending
       </div>
-      <div className="flex gap-4 px-4 md:px-8 lg:px-20 py-4">
+      <div className="flex flex-row gap-4 px-4 md:px-8 lg:px-20 py-4">
         {products.map((p) => {
           return (
             <div
@@ -78,6 +79,7 @@ function Inicio() {
           );
         })}
       </div>
+      <Footer />
     </div>
   );
 }
