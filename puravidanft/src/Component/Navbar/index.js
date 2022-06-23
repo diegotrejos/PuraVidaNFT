@@ -3,6 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Slices/userSlice";
 
+
+const button = document.querySelector('#menu-button'); // Hamburger Icon
+const menu = document.querySelector('#menu'); // Menu
+
+button.addEventListener('click', () => {
+  menu.classList.toggle('hidden');
+});
+
+
 export default function Navbar(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -10,12 +19,29 @@ export default function Navbar(props) {
   const user = useSelector((state) => state.user.user);
 
   return (
-    <nav
-      className={
-        "relative bg-purple-500 shadow-lg flex flex-wrap items-center justify-between px-2 py-3 "
-      }
-    >
-      <div className="container px-4 mx-auto flex flex-wrap items-left justify-between">
+    <nav  className={"relative bg-purple-500 shadow-lg  max-y-6xl mx-auto px-2 py-3  items-center justify-between "}>
+
+
+          <svg
+            xmlns="<http://www.w3.org/2000/svg>"
+            id="menu-button"
+            class="h-6 w-6 cursor-pointer md:hidden block"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+
+
+      <div class=" px-4 hidden w-full md:flex md:items-center md:justify-between md:w-auto " id="menu">
+      <ul class="text-base text-gray-700 pt-4 md:flex md:justify-between md:pt-0">
+
         <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
           <button
             className={
@@ -48,8 +74,8 @@ export default function Navbar(props) {
             Subir
           </button>
         </div>
-
-        <div className="flex flex-col lg:flex-row lg:ml-auto">
+       
+        <div className="flex flex-col sm:flex-row lg:ml-auto">
           <p className="w-full inline-block mr-4 py-8 items-center text-white text-m whitespace-nowrap">
             {user ? ` ¡Bienvenido ${user}!` : "¡Bienvenido!"}
           </p>
@@ -91,7 +117,9 @@ export default function Navbar(props) {
             </nav>
           </div>
         </div>
+        </ul>
       </div>
+
     </nav>
   );
 }
