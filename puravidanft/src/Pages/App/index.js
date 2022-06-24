@@ -12,8 +12,8 @@ import Subir from "../Subir";
 import Signup from "../Signup";
 import RecoverPassword from "../RecoverPassword";
 import EditAccount from "../EditAccount";
-import ChancePassword from "../ChancePassword";
-import AploadNFT from "../AploadNFT";
+import ChangePassword from "../ChangePassword";
+import UploadNFT from "../UploadNFT";
 import NFTDetails from "../NFTDetails";
 
 function App() {
@@ -42,8 +42,8 @@ function App() {
           <Route path="signup" element={<Signup />} />
           <Route path="recoverpassword" element={<RecoverPassword />} />
           <Route path="editaccount" element={<EditAccount />} />
-          <Route path="chancepassword" element={<ChancePassword />} />
-          <Route path="aploadNFT" element={<AploadNFT />} />
+          <Route path="changepassword" element={<ChangePassword />} />
+          <Route path="uploadNFT" element={<UploadNFT />} />
           <Route path="nftdetails" element={<NFTDetails />} />
 
         </Routes>

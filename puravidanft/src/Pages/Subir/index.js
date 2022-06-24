@@ -1,4 +1,3 @@
-import Header from "../../Component/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../Slices/cartSlice";
 import Navbar from "../../Component/Navbar/index.js";
