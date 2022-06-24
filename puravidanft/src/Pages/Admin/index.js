@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import Header from "../../Component/Header";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../../Slices/userSlice";
+import Navbar from "../../Component/Navbar";
 
 function Admin() {
 
@@ -21,7 +21,7 @@ function Admin() {
 
   return (
     <div>
-      <Header />
+      <Navbar />
       <div className="grid grid-cols-3 gap-4 px-4 md:px-8 lg:px-20 py-4">
         {users.map((u) => {
           return (

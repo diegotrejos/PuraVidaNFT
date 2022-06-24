@@ -41,7 +41,7 @@ export default function EditAccount() {
           <div className="mb-4">
             <button
               className="h-[48px] w-[300px] rounded-md bg-purple-500 text-white"
-              onClick={() => navigate("/chancepassword")}
+              onClick={() => navigate("/changepassword")}
             >
               Cambiar Contraseña
             </button>

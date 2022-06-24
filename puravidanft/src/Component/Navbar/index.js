@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Slices/userSlice";
 
 
-const button = document.querySelector('#menu-button'); // Hamburger Icon
+/* const button = document.querySelector('#menu-button'); // Hamburger Icon
 const menu = document.querySelector('#menu'); // Menu
 
 button.addEventListener('click', () => {
   menu.classList.toggle('hidden');
-});
+}); */
 
 
 export default function Navbar(props) {
@@ -69,7 +69,7 @@ export default function Navbar(props) {
             className={
               "text-white text-m font-bold leading-relaxed inline-block mr-5 py-7 whitespace-nowrap uppercase"
             }
-            onClick={() => navigate("/AploadNFT")}
+            onClick={() => navigate("/uploadNFT")}
           >
             Subir
           </button>
