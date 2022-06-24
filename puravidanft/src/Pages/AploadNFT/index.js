@@ -12,7 +12,7 @@ export default function AploadNFT() {
   return (
     <div>
       <Navbar />
-      <div class="flex m-20 mr-2">
+      <div class="flex m-20 mr-4">
         <div className=" border-2 border-black text-black p-2 h-[400px] w-[600px] ">
           <h1 className=" text-2xl font-bold flex justify-center">
             Subir imagen:
@@ -20,7 +20,7 @@ export default function AploadNFT() {
         </div>
         <div class=" flex justify-center">
           <div class="w-1/2 p-8 "></div>
-          < div class="w-1/2 p-4">
+          <div class="w-1/2 p-4">
             <div className="mb-8 ">
               <h1 className=" text-2xl font-bold">Subir NFT:</h1>
             </div>
@@ -34,7 +34,7 @@ export default function AploadNFT() {
                 }}
               />
             </div>
-            <div className="mb-8 text-center">
+            <div className="mb-8 ">
               <input
                 placeholder="Precio"
                 className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
@@ -44,31 +44,32 @@ export default function AploadNFT() {
                 }}
               />
             </div>
-            <div className="mb-8 text-center">
+            <div className="mb-8 ">
               <select
                 id="categories"
                 class={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
               >
                 <option selected>Seleccione una categoría</option>
-                <option value="Fantasia">Fantasía</option>
-                <option value="Ficcion">Ficción</option>
-                <option value="Realismo">Realismo</option>
-                <option value="SinC">Sin categoría</option>
+                <option value="US">Fantasía</option>
+                <option value="CA">Ficción</option>
+                <option value="FR">Realismo</option>
+                <option value="DE">Sin categoría</option>
               </select>
             </div>
-            
-              <button className=" text-center mb-4 h-[48px] w-[300px] rounded-md bg-purple-500 text-white">
+            <div className="mb-4 ">
+              <button className="h-[48px] w-[300px] rounded-md bg-purple-500 text-white">
                 Subir
               </button>
-          
-            
+            </div>
+            <div className=" mb-4 ">
               <button
-                className=" text-center mb-4 h-[48px] w-[300px] rounded-md bg-gray-500 text-white"
+                className="h-[48px] w-[300px] rounded-md bg-gray-500 text-white"
                 onClick={() => navigate("/")}
               >
                 Cancelar
               </button>
-              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

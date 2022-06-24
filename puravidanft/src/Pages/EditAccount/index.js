@@ -12,13 +12,13 @@ export default function EditAccount() {
   return (
     <div class="grid-rows-2">
       <Navbar />
-      <div class="flex m-10 mr-4">
+      <div class="flex m-20 mr-4">
         <div class="w-1/2 p-8">
-          <div className="mb-12 text-center ">
+          <div className="mb-8 ">
             <h1 className=" text-3xl font-bold">Editar Cuenta :</h1>
           </div>
 
-          <div className="mb-12 text-center">
+          <div className="mb-8">
             <input
               placeholder="Nombre"
               className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
@@ -28,7 +28,7 @@ export default function EditAccount() {
               }}
             />
           </div>
-          <div className="mb-12  text-center">
+          <div className="mb-8">
             <input
               placeholder="Email"
               className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
@@ -38,19 +38,19 @@ export default function EditAccount() {
               }}
             />
           </div>
-          <div className="mb-4 text-center">
+          <div className="mb-4">
             <button
-              className="h-[48px] w-[300px] rounded-md bg-gray-500 text-white justify-center "
+              className="h-[48px] w-[300px] rounded-md bg-purple-500 text-white"
               onClick={() => navigate("/chancepassword")}
             >
-              Cambiar contraseña
+              Cambiar Contraseña
             </button>
           </div>
         </div>
         <div class="w-1/2 p-4">
           <div className="mb-4 flex justify-center ">
             <img
-              className={`${"w-100"} ${"h-80"}`}
+              className={`${"w-80"} ${"h-80"}`}
               alt="Imagen de Usuario"
               src="https://i.pinimg.com/736x/a6/5e/ba/a65ebae219c97f8624f32140e80889a9.jpg"
             />
@@ -63,19 +63,19 @@ export default function EditAccount() {
         </div>
       </div>
       <div class="flex justify-center">
-        <div className="mb-4">
+        <div className=" mb-4">
           <button
-            className="h-[48px] w-[400px] rounded-md bg-gray-500 text-white"
+            className="h-[48px] w-[300px] rounded-md bg-gray-500 text-white"
             onClick={() => navigate("/login")}
           >
-            Ver billetera
+            Ver Billetera
           </button>
         </div>
       </div>
       <div class="flex justify-center">
         <div className="mb-4">
-          <button className="h-[48px] w-[400px] rounded-md bg-purple-500 text-white">
-            Confirmar cambios
+          <button className="h-[48px] w-[300px] rounded-md bg-purple-500 text-white">
+            Confirmar Cambios
           </button>
         </div>
       </div>
