@@ -28,7 +28,7 @@ export default function NFTDetails() {
           </div>
         </div>
 
-        <div className="p-4 relative -right-1/3 p-2">
+        <div className="p-4 relative -right-1/3">
           <div className="p-8">
             <div className="mb-8 ">
               <div className="border-2 border-gray-400 bg-gray-300 text-gray-700 p-2 h-450 w-450">
