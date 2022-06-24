@@ -41,12 +41,12 @@ export default function EditAccount() {
             </div>
   
             <div className="mb-6">
-            <button className="h-[48px] w-[200px] rounded-md bg-purple-500 text-white">
-              Confirmar Cambios
+            <button className="h-[48px] w-[400px] rounded-md bg-purple-500 text-white">
+              Confirmar cambios
             </button>
           </div>
             <div className="mb-4">
-              <button className="h-[48px] w-[200px] rounded-md bg-gray-500 text-white"
+              <button className="h-[48px] w-[400px] rounded-md bg-gray-500 text-white"
               onClick={() => navigate("/editaccount")}>
                 Cancelar
               </button>
