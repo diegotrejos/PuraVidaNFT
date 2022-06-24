@@ -69,7 +69,7 @@ export default function Navbar(props) {
             className={
               "text-white text-m font-bold leading-relaxed inline-block mr-5 py-7 whitespace-nowrap uppercase"
             }
-            onClick={() => navigate("/uploadNFT")}
+            onClick={() => navigate("/ploadNFT")}
           >
             Subir
           </button>

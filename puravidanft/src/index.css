@@ -7,3 +7,9 @@
     padding: 25px 50px;
     margin-bottom: 40px;
 }
+
+.borderNFT{
+    border: 4px solid rgb(181, 172, 181);
+    background-color: rgb(175, 170, 170, 0.5);
+    margin-bottom: 40px;
+}
