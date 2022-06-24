@@ -54,7 +54,7 @@ export default function Navbar(props) {
                       </button>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row lg:ml-auto">
+                    <div class="flex flex-col sm:flex-row lg:ml-auto absolute top-0 right-0 ">
                       <p className="w-full inline-block mr-4 py-8 items-center text-white text-m whitespace-nowrap">
                         {user ? ` ¡Bienvenido ${user}!` : "¡Bienvenido!"}
                       </p>
