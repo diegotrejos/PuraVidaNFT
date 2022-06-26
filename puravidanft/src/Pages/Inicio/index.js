@@ -3,6 +3,7 @@ import { addItem } from "../../Slices/cartSlice";
 import Navbar from "../../Component/Navbar/index.js";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Component/Footer/index.js";
+import Carousel from "../../Component/Carousel/index.js";
 
 const products = [
   {
@@ -45,40 +46,8 @@ function Inicio() {
   return (
     <div>
       <Navbar />
-      <div className="flex gap-4 px-4 md:px-8 lg:px-20 py-4">
-        Trending
-      </div>
-      <div className="flex flex-row gap-4 px-4 md:px-8 lg:px-20 py-4">
-        {products.map((p) => {
-          return (
-            <div
-              key={`product_${p.id}`}
-              className={`border ${theme.productBorder}`}
-            >
-              <div className="cursor-pointer text-2xl">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  width={602}
-                  height={753}
-                  onClick={() => navigate("/nftdetails")}
-                />
-              </div>
-              <div className="p-4 text-center">
-                <p>{p.name}</p>
-                <p className={`${theme.priceTag}`}>€{p.price}</p>
-                <button
-                  onClick={() => {
-                    dispatch(addItem());
-                  }}
-                >
-                  Agregar al carrito
-                </button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+
+      <Carousel Title ="Trending"></Carousel>
       <Footer />
     </div>
   );

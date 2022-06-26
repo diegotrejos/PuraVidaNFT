@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Slices/userSlice";
 import { Transition } from "@headlessui/react";
-
 export default function Navbar(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
