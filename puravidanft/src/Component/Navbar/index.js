@@ -19,7 +19,7 @@ export default function Navbar(props) {
             <div className="flex items-center">
               <div className="hidden md:block">
                 <div className="ml-10 flex items-baseline space-x-4">
-                  <ul class="text-base text-gray-700 pt-4 md:flex md:justify-between md:pt-0">
+                  <ul className="text-base text-gray-700 pt-4 md:flex md:justify-between md:pt-0">
                     <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                       <button
                         className={
@@ -53,7 +53,7 @@ export default function Navbar(props) {
                       </button>
                     </div>
 
-                    <div class="flex flex-col sm:flex-row lg:ml-auto absolute top-0 right-0 ">
+                    <div className="flex flex-col sm:flex-row lg:ml-auto absolute top-0 right-20 ">
                       <p className="w-full inline-block mr-4 py-8 items-center text-white text-m whitespace-nowrap">
                         {user ? ` ¡Bienvenido ${user}!` : "¡Bienvenido!"}
                       </p>
@@ -161,8 +161,8 @@ export default function Navbar(props) {
         >
           {(ref) => (
             <div className="md:hidden" id="mobile-menu">
-              <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <ul class="text-base text-gray-700 pt-4 md:flex md:justify-between md:pt-0">
+              <div >
+                <ul className="text-base text-gray-700 pt-4 md:flex md:justify-between md:pt-0">
                   <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     <button
                       className={
@@ -210,7 +210,7 @@ export default function Navbar(props) {
                       </button>
                       <nav
                         tabIndex="0"
-                        className="border-2 bg-white invisible border-purple-800 rounded w-60 absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1"
+                        className="border-2 bg-white invisible border-purple-800 rounded w-60 absolute left-0 top-0 transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-2"
                       >
                         <ul className="py-1">
                           <li>
