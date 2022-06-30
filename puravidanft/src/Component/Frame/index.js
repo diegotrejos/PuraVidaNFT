@@ -15,8 +15,8 @@ function Frame({ product }) {
         <img
           src={product.image}
           alt={product.name}
-          width={602}
-          height={753}
+          width={800}
+          height={800}
           onClick={() => {
             navigate("/nftdetails", {
               state: {
@@ -43,3 +43,5 @@ function Frame({ product }) {
   );
 }
 export default Frame;
+
+

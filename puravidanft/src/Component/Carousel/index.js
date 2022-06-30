@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Frame from "../../Component/Frame/index.js";
 // Data
 
@@ -11,6 +12,7 @@ const data = {
       image:
         "https://pbs.twimg.com/media/EcxlgfpX0AAFUvh?format=jpg&name=4096x4096",
       price: "7.26",
+      author: "Beeple",
       likes: 1040,
       category: "Fantasía",
     },
@@ -20,12 +22,14 @@ const data = {
       image:
         "https://preview.redd.it/f9ejq7jdnns31.png?auto=webp&s=4d3425dac5854dc6d461d7497a5cfd20ae49e61f",
       price: "7.26",
+      author: "Beeple",
       likes: 13200,
       category: "Fantasía",
     },
     {
       id: "3",
       name: "Electric City",
+      author: "Beeple",
       image:
         "https://cdnb.artstation.com/p/assets/images/images/015/763/867/4k/beeple-01-24-19.jpg?1549548527",
       price: "7.26",
@@ -36,6 +40,7 @@ const data = {
     {
       id: "4",
       name: "Everydays — The First 5000 Days",
+      author: "Beeple",
       image:
         "https://static01.nyt.com/images/2021/03/12/arts/12nft-buyer-1/merlin_184937952_4f3bc7e4-bcd1-4e3a-aa99-aeb528736b06-mobileMasterAt3x.jpg",
       price: "7.26",
@@ -139,6 +144,7 @@ const Carousel = (props) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
+  const theme = useSelector((state) => state.app.theme);
 
   const movePrev = () => {
     if (currentIndex > 0) {
@@ -235,8 +241,47 @@ const Carousel = (props) => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
-          {data.resources.map((p) => {
-            return <Frame product={p} />;
+          {data.resources.map((resource, index) => {
+            return (
+
+
+              <div
+                key={index}
+                className="carousel-item text-center relative w-64 h-64 snap-start"
+              >
+                <a
+                  onClick={() => navigate("/nftdetails")}
+                  className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
+                  style={{ backgroundImage: `url(${resource.image || ""})` }}
+                >
+                  <img
+                    src={resource.image || ""}
+                    alt={resource.name}
+                    className="w-full aspect-square hidden "
+                  />
+                </a>
+                <a
+                  onClick={() => navigate("/nftdetails")}
+                  className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-blue-800/75 z-10"
+                >
+                  <h3 className="text-white py-6 px-3 mx-auto text-xl">
+                    {resource.name}
+                  </h3>
+                  <h3 className="text-white py-6 px-3 mx-auto text-xl">
+                    {resource.price}ETH
+                  </h3>
+                  <h3 className="text-white cursor-pointer text">
+                    ❤{resource.likes}
+                  </h3>
+                  <h3 className="text-white py-6 px-3 mx-auto text-xl">
+                    {resource.author}
+                  </h3>
+                </a>
+
+     
+
+              </div>
+            );
           })}
         </div>
       </div>
@@ -276,6 +321,18 @@ const Carousel = (props) => {
                     {resource.price}ETH
                   </h3>
                 </a>
+
+      </div>
+      <div className="p-4">
+        <p className="float-left">{product.author}</p>
+        <p className= {`float-right ${theme.priceTag}`}>${product.price}</p>
+      </div>
+      <div className="p-4">
+      <p className="float-left">{product.name}</p>
+        <p className="float-right cursor-pointer text">❤{product.likes}</p>
+      </div>
+      
+
               </div>
             );
           })}
