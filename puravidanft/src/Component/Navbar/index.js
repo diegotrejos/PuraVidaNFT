@@ -161,7 +161,7 @@ export default function Navbar(props) {
         >
           {(ref) => (
             <div className="md:hidden" id="mobile-menu">
-              <div >
+              <div>
                 <ul className="text-base text-gray-700 pt-4 md:flex md:justify-between md:pt-0">
                   <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
                     <button
@@ -210,7 +210,7 @@ export default function Navbar(props) {
                       </button>
                       <nav
                         tabIndex="0"
-                        className="border-2 bg-white invisible border-purple-800 rounded w-60 absolute left-0 top-0 transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-2"
+                        className="border-2 bg-white invisible border-purple-800 rounded w-60 absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1"
                       >
                         <ul className="py-1">
                           <li>

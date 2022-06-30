@@ -53,16 +53,7 @@ function Inicio() {
       <Navbar />
 
       <Carousel Title ="Trending"></Carousel>
-      <div className="flex gap-4 px-4 md:px-8 lg:px-20 py-4">
-        Trending
-      </div>
-      <div className="flex flex-row gap-4 px-4 md:px-8 lg:px-20 py-4">
-        {products.map((p) => {
-          return (
-            <Frame product={p} />          
-          );
-        })}
-      </div>
+
       <Footer />
     </div>
   );
