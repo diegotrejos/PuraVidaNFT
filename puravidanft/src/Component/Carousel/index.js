@@ -27,38 +27,81 @@ const data = {
     },
 
     {
+      id: "4",
       name: "Everydays — The First 5000 Days",
       image:
         "https://static01.nyt.com/images/2021/03/12/arts/12nft-buyer-1/merlin_184937952_4f3bc7e4-bcd1-4e3a-aa99-aeb528736b06-mobileMasterAt3x.jpg",
       price: "7.26",
     },
     {
-      id: "1",
-      name: "Magic Kingdom",
+      id: "5",
+      name: "Bored Ape",
       image:
-        "https://pbs.twimg.com/media/EcxlgfpX0AAFUvh?format=jpg&name=4096x4096",
+        "https://lh6.googleusercontent.com/EF6DVrCepU84x0neXNfy1n8Kto8bgYNi4wHC6ovwUwYAWe1-ivLGzNxj25-qUv4TTZnisOnZ2U40bGgvXHhJwxuCDte3n2dSg2ITgl0KSkqddZb7v0rppW0MvNHdVrCqcwkqmyj2",
       price: "7.26",
     },
     {
-      id: "2",
-      name: "Setting Sun",
+      id: "6",
+      name: "Bored Ape #1837",
       image:
-        "https://preview.redd.it/f9ejq7jdnns31.png?auto=webp&s=4d3425dac5854dc6d461d7497a5cfd20ae49e61f",
+        "https://lh3.googleusercontent.com/_Iw2NoosTEV9Yd9CrDa-z8dlrkm199DpKaczdMO7G8K71AfXyfKPWaQ-5qrIzfbapcPHRMCET8lHwNR7uh7l1DP4-t0lMUZjgUWG=w1400-k",
       price: "7.26",
     },
     {
-      id: "3",
-      name: "Electric City",
+      id: "7",
+      name: "Bull #64",
       image:
-        "https://cdnb.artstation.com/p/assets/images/images/015/763/867/4k/beeple-01-24-19.jpg?1549548527",
+        "https://img.seadn.io/files/a0d67e53ceb57688ff8dfc01a8affc03.png?fit=max&w=600",
       price: "7.26",
     },
 
     {
-      name: "Everydays — The First 5000 Days",
+      id: "8",
+      name: "Solange",
       image:
-        "https://static01.nyt.com/images/2021/03/12/arts/12nft-buyer-1/merlin_184937952_4f3bc7e4-bcd1-4e3a-aa99-aeb528736b06-mobileMasterAt3x.jpg",
+      "https://openseauserdata.com/files/ce3b272f88ce2363e91525896aa03883.svg",
+      price: "2.4",
+      author: "CyberBrokers"
+    },
+    {
+      id: "9",
+      name: "Delysid Kiddos #571",
+      image:
+        "https://lh3.googleusercontent.com/DGlhA4NW3LZ8NSqwoe6BejtAGWjiYSdKDlD0ptuKEYUCxuYEAaSVTaEXHMhj1pHfuQtXbE2uh17A1Fql70TnZZ59GXs5E5p6bxQPzy8=w600",
       price: "7.26",
+      author:"Delysid Kiddos"
+    },
+    {
+      id: "10",
+      name: "Azuki #654",
+      image:
+        "https://img.seadn.io/files/164010526b03cfc1a8c37f80f153e8f4.png?fit=max&w=600",
+      price: "11",
+      author: "Azuki"
+    },
+    {
+      id: "11",
+      name: "SNEAKERHEADS #927",
+      image:
+        "https://img.seadn.io/files/fec889de404aee81855d93ab1b6fc760.png?fit=max&w=600",
+      price: "0.278",
+      author: "SNEAKER HEADS Official"
+    },
+    {
+      id: "12",
+      name: "Bull #3152",
+      image:
+        "https://img.seadn.io/files/956071a64abf4c7a08e14c1a6c9e6069.png?fit=max",
+      price: "7.26",
+    },
+
+    {
+      id: "13",
+      name: "#81750",
+      image:
+      "https://img.seadn.io/files/4a0101213ec5f0d9a9196a7e3a771411.jpg?fit=max&w=600",
+      price: "2.4",
+      author: "Otherdeed for Otherside"
     },
   ],
 };
