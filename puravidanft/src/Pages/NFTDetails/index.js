@@ -1,11 +1,11 @@
 /*import { useState } from "react";
 import { useSelector } from "react-redux";*/
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Navbar from "../../Component/Navbar/index.js";
 import React from "react";
 
 export default function NFTDetails() {
-  const navigate = useNavigate();
+  const location = useLocation();
   const [showModal, setShowModal] = React.useState(false);
   /*  const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -20,9 +20,9 @@ export default function NFTDetails() {
             <div className="border-2 border-purple-500 p-2 h-[450] w-[450] ">
               <img
                 src={
-                  "https://cdnb.artstation.com/p/assets/images/images/015/763/867/4k/beeple-01-24-19.jpg?1549548527"
+                  location.state.image               
                 }
-                alt={"NFT Electric City"}
+                alt={location.state.name}
                 width={450}
                 height={450}
               />
@@ -34,10 +34,10 @@ export default function NFTDetails() {
           <div className="p-8">
             <div className="mb-8 ">
               <div className="border-2 border-gray-400 bg-gray-300 text-gray-700 p-2 h-450 w-450">
-                <h1 className="text-2xl mb-3">Autor: Beeple</h1>
-                <h1 className="text-2xl mb-3">Nombre: Electric City</h1>
-                <h1 className="text-2xl mb-3">Categoría: Futurismo</h1>
-                <h1 className="text-2xl mb-3">Precio: $9000</h1>
+                <h1 className="text-2xl mb-3">Autor: {location.state.author}</h1>
+                <h1 className="text-2xl mb-3">Nombre: {location.state.name}</h1>
+                <h1 className="text-2xl mb-3">Categoría: {location.state.category}</h1>
+                <h1 className="text-2xl mb-3">Precio: {location.state.price}</h1>
 
                 <div className="mb-12 flex justify-center">
                 <>
@@ -57,13 +57,13 @@ export default function NFTDetails() {
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                   <h3 className="text-3xl font-semibold">
-                    ¿Desea comprar este NFT?
+                    ¿Desea comprar {location.state.name}?
                   </h3>
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto ">
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Precio del NFT: 200
+                    Precio del NFT: {location.state.price}
                   </p>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
                     Saldo se de billetera: $6000

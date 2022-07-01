@@ -66,7 +66,7 @@ export default function EditAccount() {
         <div className=" mb-4">
           <button
             className="h-[48px] w-[300px] rounded-md bg-gray-500 text-white"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/billetera")}
           >
             Ver Billetera
           </button>

@@ -6,7 +6,7 @@ function Logo() {
         alt="Logo"
         src="https://wallpaperaccess.com/full/3899791.jpg"
       />
-      <div class = " text-white  text-m ml-4 "
+      <div className = " text-white  text-m ml-4 "
       >PuraVidaNFT</div>
         
     </div>

@@ -15,6 +15,7 @@ import EditAccount from "../EditAccount";
 import ChangePassword from "../ChangePassword";
 import UploadNFT from "../UploadNFT";
 import NFTDetails from "../NFTDetails";
+import Billetera from "../Billetera";
 
 function App() {
   const loading = useSelector(
@@ -45,6 +46,7 @@ function App() {
           <Route path="changepassword" element={<ChangePassword />} />
           <Route path="uploadNFT" element={<UploadNFT />} />
           <Route path="nftdetails" element={<NFTDetails />} />
+          <Route path="billetera" element={<Billetera />} />
 
         </Routes>
       </BrowserRouter>
