@@ -1,5 +1,6 @@
 import Navbar from "../../Component/Navbar/index.js";
 import Footer from "../../Component/Footer/index.js";
+import Carousel from "../../Component/Carousel/index.js";
 import Frame from "../../Component/Frame/index.js";
 
 const products = [
@@ -50,16 +51,9 @@ function Inicio() {
   return (
     <div>
       <Navbar />
-      <div className="flex gap-4 px-4 md:px-8 lg:px-20 py-4">
-        Trending
-      </div>
-      <div className="flex flex-row gap-4 px-4 md:px-8 lg:px-20 py-4">
-        {products.map((p) => {
-          return (
-            <Frame product={p} />          
-          );
-        })}
-      </div>
+
+      <Carousel Title ="Trending"></Carousel>
+
       <Footer />
     </div>
   );
