@@ -243,11 +243,11 @@ const Carousel = (props) => {
         >
           {data.resources.map((resource, index) => {
             return (
-
-
               <div
                 key={index}
-                className="carousel-item text-center relative w-64 h-64 snap-start"
+                className={`carousel-item text-center relative w-${
+                  props.size || 96
+                }  h-${props.size || 96} snap-start`}
               >
                 <a
                   onClick={() => navigate("/nftdetails")}
@@ -277,9 +277,6 @@ const Carousel = (props) => {
                     {resource.author}
                   </h3>
                 </a>
-
-     
-
               </div>
             );
           })}
