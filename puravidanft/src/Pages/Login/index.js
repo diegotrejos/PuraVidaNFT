@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, Link, useNavigate } from "react-router-dom";
-import { login } from "../../Slices/userSlice";
+import { postLogin } from "../../Slices/userSlice";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -56,10 +56,10 @@ export default function Login() {
               onClick={() => {
                 console.log('antes del dispatch');
                 dispatch(
-                  login(
+                  postLogin({
                     username,
                     password,
-                  )
+                  })
                 );
                 console.log('logged in: ' + userIsLoggedIn);
               }}

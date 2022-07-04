@@ -1,7 +1,8 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt"); //Encriptador
 const { sendRecoveryCodeEmail } = require("../services/mailService");
-const getQuery = require("../services/databaseService").getQuery;
+const data = require("../utils/data");
+//const getQuery = require("../services/databaseService").getQuery;
 
 const saltRounds = 10;
 
@@ -32,31 +33,38 @@ exports.createUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   try {
-    const query = getQuery();
+    /* const query = getQuery();
     const userPayload = req.body;
     const sql = `SELECT * FROM puravidanft.User WHERE email = '${userPayload.email}';`;
-    const result = await query(sql);
+    const result = await query(sql); */
 
-    if (!result[0]) {
+    const userPayload = req.body;
+    const users = data.usersData;
+    const found = users.find(obj => {
+        return obj.email === userPayload.email;
+      });
+
+    if (!found) {
       res.status(401).send("Credenciales invalidos.");
       return;
     }
 
     const verifyPassword = await bcrypt.compare(
       userPayload.password,
-      result[0].password
+      found.password
     );
     if (!verifyPassword) {
       res.status(401).send("Datos invalidos.");
       return;
     }
-    const user = result[0];
+    const user = found;
     delete user.password;
 
-    const sqlQueryRoles = `SELECT * FROM puravidanft.UserRoles WHERE idUser = '${user.id}'`;
-    const roles = await query(sqlQueryRoles);
+    //const sqlQueryRoles = `SELECT * FROM puravidanft.UserRoles WHERE idUser = '${user.id}'`;
+    //const roles = await query(sqlQueryRoles);
 
-    const rolesIds = roles.map((r) => r.idRol);
+    const roles = data.roles;
+    const rolesIds = roles.map((r) => r.id);
 
     const token = jwt.sign(
       { userId: user.id, roles: rolesIds },
@@ -71,7 +79,7 @@ exports.loginUser = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({
-      message: "Error al iniciar sesion: " + error,
+      message: "Error al iniciar sesión: " + error,
     });
   }
 };

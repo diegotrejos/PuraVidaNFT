@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "user",
@@ -13,55 +13,56 @@ const userSlice = createSlice({
       state.isLoggedIn = false;
       console.log(state.isLoggedIn)
     },
-    login: {
-      prepare: (email, password) => {
-        const user = postLogin(email, password).toString();
-        console.log("userName: " + user);
-        return { payload: user };
-      },
-      reducer: (state, action) => {
-        if (action.payload === "") {
-          alert("User not found");
-        } else {
-          state.user = action.payload;
-          state.isLoggedIn = true;
-        }
-      },
-    },
+    extraReducers(builder) {
+      builder
+          .addCase(postLogin.fulfilled, (state, action) => {
+            if (action.payload.error){
+              state.isLoggedIn = false;
+              state.user = null;
+              state.errorMessage = action.payload.message;
+            } else {
+              state.isLoggedIn = true;
+              state.user = action.payload;
+            }
+          })
+          .addCase(postLogin.rejected, (state) => {
+            state.isLoggedIn = false;
+            state.user = null;
+          })
   },
+}
 });
-
-const usersData = [
-  {
-    name: "Zack",
-    email: "zack@mailinator.com",
-    password: "1234",
-  },
-  {
-    name: "Dante",
-    email: "dante@mailinator.com",
-    password: "1234",
-  },
-];
 
 export const { logout, login } = userSlice.actions;
 
-export const postLogin = (email, password) => {
-  var name = "";
-  usersData.forEach((user) => {
-    if (user.email === email && user.password === password) {
-      name = user.name.toString();
-    }
+export const postLogin = createAsyncThunk('usuarios/postLogin', async (credentials) => {
+  const loginFetch = await fetch('http://localhost:7500/user/login', {
+      method: 'POST',
+      headers: {
+          "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+          email: credentials.username,
+          password: credentials.password,
+      }),
   });
-  return name;
-};
+  const userData = await loginFetch.json();
+  if (loginFetch.status === 200) {
+      return userData;
+  } else {
+      return {
+          error: true,
+          message: userData.error.message,
+      }
+  }
+});
 
-export const getAllUsers = () => {
+/* export const getAllUsers = () => {
   if (usersData != null) {
     return usersData;
   } else {
     return null;
   }
-};
+}; */
 
 export default userSlice.reducer;

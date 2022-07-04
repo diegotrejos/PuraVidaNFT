@@ -1,4 +1,4 @@
-const dotenv = require("dotenv"); //Leer lo que esta en el .env
+/* const dotenv = require("dotenv"); //Leer lo que esta en el .env
 dotenv.config();
 
 const util = require("util");
@@ -29,4 +29,4 @@ exports.connect = () => {
 
   exports.getQuery = () => {
     return query;
-  }
+  } */
