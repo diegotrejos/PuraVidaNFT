@@ -1,13 +1,15 @@
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt"); //Encriptador
 const { sendRecoveryCodeEmail } = require("../services/mailService");
-const query = require("../services/databaseService");
+const getQuery = require("../services/databaseService").getQuery;
 
 const saltRounds = 10;
 
 exports.createUser = async (req, res) => {
-    try {
-      const userPayload = req.body;
-      const sql = `INSERT INTO puravidanft.User
+  try {
+    const query = getQuery();
+    const userPayload = req.body;
+    const sql = `INSERT INTO puravidanft.User
           (name,
           email,
           password)
@@ -17,119 +19,136 @@ exports.createUser = async (req, res) => {
               '${await bcrypt.hash(userPayload.password, saltRounds)}'
               );
       `;
-      const result = await query(sql);
-      const querySelect = `SELECT id, name, email FROM puravidanft.User WHERE id=${result.insertId}`;
-      const user = await query(sqlSelect);
-      res.json(user[0]);
-    } catch (error) {
-      res.status(500).json({
-        message: "Error al registrar el usuario",
-      });
-    }
-  };
+    const result = await query(sql);
+    const querySelect = `SELECT id, name, email FROM puravidanft.User WHERE id=${result.insertId}`;
+    const user = await query(sqlSelect);
+    res.json(user[0]);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al registrar el usuario",
+    });
+  }
+};
 
 exports.loginUser = async (req, res) => {
+  try {
+    const query = getQuery();
     const userPayload = req.body;
     const sql = `SELECT * FROM puravidanft.User WHERE email = '${userPayload.email}';`;
-     
-    try {
-      const result = await query(sql);
-      if (!result[0]){
-        res.status(401).send("Credenciales invalidos.");
-        return;
-      }
-  
-      const verifyPassword = await bcrypt.compare(userPayload.password, result[0].password);
-      if (!verifyPassword){
-        res.status(401).send("Datos invalidos.");
-        return;
-      }
-      const user = result[0];
-      delete user.password;
-      res.json(user);
-    } catch (error) {
-      res.status(500).json({
-        message: "Error al iniciar sesion: " + error,
-      });
+    const result = await query(sql);
+
+    if (!result[0]) {
+      res.status(401).send("Credenciales invalidos.");
+      return;
     }
-  };
+
+    const verifyPassword = await bcrypt.compare(
+      userPayload.password,
+      result[0].password
+    );
+    if (!verifyPassword) {
+      res.status(401).send("Datos invalidos.");
+      return;
+    }
+    const user = result[0];
+    delete user.password;
+
+    const sqlQueryRoles = `SELECT * FROM puravidanft.UserRoles WHERE idUser = '${user.id}'`;
+    const roles = await query(sqlQueryRoles);
+
+    const rolesIds = roles.map((r) => r.idRol);
+
+    const token = jwt.sign(
+      { userId: user.id, roles: rolesIds },
+      process.env.JWT_KEY,
+      {
+        expiresIn: "10m",
+      }
+    );
+    res.json({
+      ...user,
+      token,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al iniciar sesion: " + error,
+    });
+  }
+};
 
 exports.recoverPassword = async (req, res) => {
-    try {
-      const userPayload = req.body;
-      const user = await db.User.findOne({
-        where: { email: userPayload.email },
-      });
-      if (!user) {
-        res.status(401).send("Datos no válidos");
-        return;
-      }
-      const randomToken = Math.floor(
-        Math.random() * (999999 - 100000 + 1) + 100000
-      );
-  
-      await db.UserRecoveryCode.destroy({
-        where: {
-          userId: user.id,
-        },
-      });
-  
-      const nowDate = new Date();
-      const expirationDate = new Date(
-        nowDate.setMinutes(nowDate.getMinutes() + 15)
-      ).toISOString();
-  
-      await db.UserRecoveryCode.create({
-        userId: user.id,
-        code: randomToken,
-        expirationDate,
-      });
-  
-      await sendRecoveryCodeEmail(user.email, randomToken);
-  
-      res.status(200).send();
-    } catch (error) {
-      res.status(500).send("Server error: " + error);
+  try {
+    const query = getQuery();
+    const userPayload = req.body;
+    const queryUserSQL = `SELECT id, email FROM puravidanft.User WHERE email = '${userPayload.email}';`;
+    const result = await query(queryUserSQL);
+
+    if (!result[0]) {
+      res.status(401).send("Datos inválidos");
+      return;
     }
-  };
+
+    const user = result[0];
+    const randomToken = Math.floor(
+      Math.random() * (999999 - 100000 + 1) + 100000
+    );
+
+    const deleteCodeSQL = `DELETE puravidanft.Recovery_Codes WHERE id = ${user.id};`;
+    await query(deleteCodeSQL);
+
+    const insertCodeSQL = `INSERT INTO puravidanft.Recovery_Codes
+    (idUser, code)
+    VALUES(${user.id}, ${randomToken});`;
+    await query(insertCodeSQL);
+
+    await sendRecoveryCodeEmail(user.email, randomToken);
+
+    res.status(200).send();
+  } catch (error) {
+    res.status(500).send("Server error: " + error);
+  }
+};
 
 exports.resetPassword = async (req, res) => {
-    try {
-      const userPayload = req.body;
-  
-      const user = await db.User.findOne({
-        where: { email: userPayload.email },
-        include: ["recoveryCode"],
-      });
-      if (
-        !user ||
-        !user.recoveryCode ||
-        user.recoveryCode.code !== userPayload.code
-      ) {
-        res.status(401).send("Datos no válidos");
-        return;
-      }
-      
-      if (user.recoveryCode.expirationDate < new Date()) {
-        res
-          .status(401)
-          .send(
-            "El código de recuperación brindado ya expiró. Solicite un nuevo código de recuperación."
-          );
-        return;
-      }
-  
-      user.password = await bcrypt.hash(userPayload.password, saltRounds);
-      user.save();
-  
-      await db.UserRecoveryCode.destroy({
-        where: {
-          userId: user.id,
-        },
-      });
-  
-      res.status(204).send();
-    } catch (error) {
-      res.status(500).send("Server error: " + error);
+  try {
+    const query = getQuery();
+    const userPayload = req.body;
+    const queryUserSQL = `SELECT u.id, rc.code
+    FROM Recovery_Codes rc
+    JOIN User u ON rc.userId = u.id
+    WHERE u.email = '${userPayload.email}';`;
+
+    const result = await query(queryUserSQL);
+    if (!result[0] || result[0].code !== userPayload.code) {
+      res.status(401).send("Datos inválidos");
+      return;
     }
-  };
+
+    const userCode = result[0];
+    const updatePasswordSQL = `UPDATE puravidanft.User
+    SET password='${await bcrypt.hash(userPayload.password, saltRounds)}'
+    WHERE id=${userCode.id};`;
+    await query(updatePasswordSQL);
+
+    const deleteCodeSQL = `DELETE puravidanft.Recovery_Codes WHERE id = ${userCode.id};`;
+    await query(deleteCodeSQL);
+
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).send("Server error: " + error);
+  }
+};
+
+exports.listUsers = async (req, res) => {
+  try {
+    const query = getQuery();
+    const querySelect = "SELECT id, name, email FROM puravidanft.User";
+    const users = await query(querySelect);
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({
+      message: "Ocurrió un error al recuperar los usuarios.",
+      error,
+    });
+  }
+};

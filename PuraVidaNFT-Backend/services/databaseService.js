@@ -5,9 +5,9 @@ const util = require("util");
 const mysql = require("mysql");
 
 let databaseConnection;
-let queryObject;
+let query;
 
-const query = (() => {
+exports.connect = () => {
     if (!databaseConnection || !queryObject){
         databaseConnection = mysql.createConnection({
             host: process.env.MYSQL_HOST,
@@ -17,19 +17,16 @@ const query = (() => {
             database: process.env.MYSQL_DB,
           });
 
-          databaseConnection.connect(async (err) => {
+          databaseConnection.connect(function (err) {
             if (err) {
               throw err;
             }
             console.log("Conectado a la base de datos");
-            queryObject = util.promisify(databaseConnection.query).bind(databaseConnection);
-            return queryObject;
-          });
-          
+            query = util.promisify(databaseConnection.query).bind(databaseConnection);
+          });         
     }
-    else {
-        return queryObject;
-    }
-  })();
+  };
 
-  module.exports = query;
+  exports.getQuery = () => {
+    return query;
+  }

@@ -1,6 +1,10 @@
 const express = require('express');
-const { createUser, loginUser, recoverPassword, resetPassword } = require('../controllers/users');
+const { createUser, loginUser, recoverPassword, resetPassword, listUsers } = require('../controllers/users');
+const { userIsAuthenticated, userIsInRole } = require('../middlewares/auth');
 const router = express.Router();
+const { ROLES } = require("../utils/constants");
+
+router.route("/").get([userIsAuthenticated, userIsInRole([ROLES.ADMIN])], listUsers);
 
 router.route("/").post( createUser );
 
