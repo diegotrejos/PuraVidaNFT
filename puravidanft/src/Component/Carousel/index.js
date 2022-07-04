@@ -24,7 +24,7 @@ const data = {
       price: "7.26",
       author: "Beeple",
       likes: 13200,
-      category: "Fantasía",
+      category: "Ficcion",
     },
     {
       id: "3",
@@ -34,7 +34,7 @@ const data = {
         "https://cdnb.artstation.com/p/assets/images/images/015/763/867/4k/beeple-01-24-19.jpg?1549548527",
       price: "7.26",
       likes: 50,
-      category: "Fantasía",
+      category: "CyberPunk",
     },
 
     {
@@ -45,7 +45,7 @@ const data = {
         "https://static01.nyt.com/images/2021/03/12/arts/12nft-buyer-1/merlin_184937952_4f3bc7e4-bcd1-4e3a-aa99-aeb528736b06-mobileMasterAt3x.jpg",
       price: "7.26",
       likes: 441,
-      category: "Fantasía",
+      category: "Ficcion",
     },
     {
       id: "5",
@@ -55,7 +55,7 @@ const data = {
       price: "0.02",
       author: "Artyx_08",
       likes: 182,
-      category: "Fantasía",
+      category: "CyberPunk",
     },
     {
       id: "6",
@@ -84,7 +84,7 @@ const data = {
       price: "2.4",
       author: "CyberBrokers",
       likes: 7431,
-      category: "Fantasía",
+      category: "CyberPunk",
     },
     {
       id: "9",
@@ -94,7 +94,7 @@ const data = {
       price: "7.26",
       author: "Delysid Kiddos",
       likes: 132,
-      category: "Fantasía",
+      category: "Ficcion",
     },
     {
       id: "10",
@@ -104,7 +104,7 @@ const data = {
       price: "11",
       author: "Azuki",
       likes: 87200,
-      category: "Fantasía",
+      category: "Ficcion",
     },
     {
       id: "11",
@@ -141,10 +141,12 @@ const data = {
 
 const Carousel = (props) => {
   const navigate = useNavigate();
+  const[filter, setfilter]= useState('All')
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
   const theme = useSelector((state) => state.app.theme);
+  
 
   const movePrev = () => {
     if (currentIndex > 0) {
@@ -186,6 +188,26 @@ const Carousel = (props) => {
       ? carousel.current.scrollWidth - carousel.current.offsetWidth
       : 0;
   }, []);
+
+var filtered;
+if(props.mode == 1)
+{
+  filtered = data.resources.filter(resources => {
+    return resources.category == props.filter;
+  });
+}
+else if(props.mode == 2)
+{
+  filtered = [...data.resources].sort((a, b) =>
+    b.likes - a.likes);
+}
+else 
+{
+  filtered = data.resources;
+}
+
+
+
 
   return (
     <div className="carousel my-12 mx-auto">
@@ -241,13 +263,11 @@ const Carousel = (props) => {
           ref={carousel}
           className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
         >
-          {data.resources.map((resource, index) => {
+          {filtered.map((resource, index) => {
             return (
               <div
                 key={index}
-                className={`carousel-item text-center relative w-${
-                  props.size || 96
-                }  h-${props.size || 96} snap-start`}
+                className={`carousel-item text-center relative w-${props.size || 80}  h-${props.size || 80} snap-start`}
               >
                 <a
                   onClick={() => navigate("/nftdetails")}

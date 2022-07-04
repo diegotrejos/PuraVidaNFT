@@ -52,7 +52,7 @@ function Inicio() {
     <div>
       <Navbar />
 
-      <Carousel Title ="Trending"></Carousel>
+      <Carousel Title ="Trending" mode="2"></Carousel>
 
       <Footer />
     </div>

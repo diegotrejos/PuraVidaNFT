@@ -27,7 +27,7 @@ server.get("/", (req, res) => {
 
 server.post("/user2", async (req, res) => {
   const userPayload = req.body;
-  const sql = `INSERT into PuraVidaNFT.User(
+  const sql = `INSERT into puravidanft.User(
         name,
         email,
         password)

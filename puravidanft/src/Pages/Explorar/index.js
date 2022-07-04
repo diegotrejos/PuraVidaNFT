@@ -4,22 +4,20 @@ import Footer from "../../Component/Footer/index.js";
 import Carousel from "../../Component/Carousel/index.js";
 import Frame from "../../Component/Frame/index.js";
 
-
 function Explorar() {
-
-
-  const theme = useSelector(
-    (state) => state.app.theme
-  );
+  const theme = useSelector((state) => state.app.theme);
 
   const dispatch = useDispatch();
 
   return (
     <div>
-  
-      <Navbar  />
-      <Carousel Title ="Fantasia" filter = "Fantasia" size = "64" ></Carousel>
-
+      <Navbar />
+      <div className="">
+        <Carousel Title="Fantasía" filter="Fantasía" size="64" mode = "1" ></Carousel>
+        <Carousel Title="Ficcion" filter="Ficcion" size="64"  mode = "1"></Carousel>
+        <Carousel Title="CyberPunk" filter="CyberPunk" size="64"  mode = "1"></Carousel>
+       
+      </div>
       <Footer />
     </div>
   );
