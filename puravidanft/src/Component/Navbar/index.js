@@ -55,7 +55,7 @@ export default function Navbar(props) {
 
                     <div className="flex flex-col sm:flex-row lg:ml-auto absolute top-0 right-20 ">
                       <p className="w-full inline-block mr-4 py-8 items-center text-white text-m whitespace-nowrap">
-                        {user ? ` ¡Bienvenido ${user}!` : "¡Bienvenido!"}
+                        {user ? ` ¡Bienvenido ${user.name}!` : "¡Bienvenido!"}
                       </p>
                       <div className="w-full group relative">
                         <button>

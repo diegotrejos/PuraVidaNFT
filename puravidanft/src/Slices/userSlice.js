@@ -12,7 +12,8 @@ const userSlice = createSlice({
       state.user = null;
       state.isLoggedIn = false;
       console.log(state.isLoggedIn)
-    },
+    }
+  },
     extraReducers(builder) {
       builder
           .addCase(postLogin.fulfilled, (state, action) => {
@@ -30,23 +31,24 @@ const userSlice = createSlice({
             state.user = null;
           })
   },
-}
 });
 
-export const { logout, login } = userSlice.actions;
+export const { logout } = userSlice.actions;
 
 export const postLogin = createAsyncThunk('usuarios/postLogin', async (credentials) => {
+  console.log("Credenciales: " + credentials.email + credentials.password);
   const loginFetch = await fetch('http://localhost:7500/user/login', {
       method: 'POST',
       headers: {
           "Content-type": "application/json",
       },
       body: JSON.stringify({
-          email: credentials.username,
+          email: credentials.email,
           password: credentials.password,
       }),
   });
   const userData = await loginFetch.json();
+  console.log("fetch status: " + loginFetch.status);
   if (loginFetch.status === 200) {
       return userData;
   } else {

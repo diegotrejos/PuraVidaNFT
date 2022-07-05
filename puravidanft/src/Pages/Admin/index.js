@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllUsers } from "../../Slices/userSlice";
+//import { getAllUsers } from "../../Slices/userSlice";
 import Navbar from "../../Component/Navbar";
 
 function Admin() {
@@ -13,11 +13,11 @@ function Admin() {
     (state) => state.user.users
   );
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAllUsers());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getAllUsers());
+  // }, [dispatch]);
 
   return (
     <div>

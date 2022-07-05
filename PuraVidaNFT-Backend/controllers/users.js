@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt"); //Encriptador
 const { sendRecoveryCodeEmail } = require("../services/mailService");
 const data = require("../utils/data");
-//const getQuery = require("../services/databaseService").getQuery;
 
 const saltRounds = 10;
 
@@ -33,11 +32,6 @@ exports.createUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   try {
-    /* const query = getQuery();
-    const userPayload = req.body;
-    const sql = `SELECT * FROM puravidanft.User WHERE email = '${userPayload.email}';`;
-    const result = await query(sql); */
-
     const userPayload = req.body;
     const users = data.usersData;
     const found = users.find(obj => {
@@ -53,26 +47,28 @@ exports.loginUser = async (req, res) => {
       userPayload.password,
       found.password
     );
+
     if (!verifyPassword) {
       res.status(401).send("Datos invalidos.");
       return;
     }
+
     const user = found;
     delete user.password;
 
-    //const sqlQueryRoles = `SELECT * FROM puravidanft.UserRoles WHERE idUser = '${user.id}'`;
-    //const roles = await query(sqlQueryRoles);
+    const userRoles = data.userRoles;
+    const roles = userRoles.find(obj => {
+        return obj.idUser === userPayload.id;
+      });
 
-    const roles = data.roles;
-    const rolesIds = roles.map((r) => r.id);
-
+    const rolesIds = roles.idRol;
     const token = jwt.sign(
       { userId: user.id, roles: rolesIds },
       process.env.JWT_KEY,
       {
         expiresIn: "10m",
       }
-    );
+    ); 
     res.json({
       ...user,
       token,

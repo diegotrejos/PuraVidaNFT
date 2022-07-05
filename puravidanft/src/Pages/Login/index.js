@@ -4,7 +4,7 @@ import { Navigate, Link, useNavigate } from "react-router-dom";
 import { postLogin } from "../../Slices/userSlice";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const theme = useSelector((state) => state.app.theme);
@@ -27,9 +27,9 @@ export default function Login() {
             <input
               placeholder="Email"
               className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
-              value={username}
+              value={email}
               onChange={(evt) => {
-                setUsername(evt.target.value);
+                setEmail(evt.target.value);
               }}
             />
           </div>
@@ -57,7 +57,7 @@ export default function Login() {
                 console.log('antes del dispatch');
                 dispatch(
                   postLogin({
-                    username,
+                    email,
                     password,
                   })
                 );
