@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import Navbar from "../../Component/Navbar/index.js";
 
 export default function ChancePassword() {
   const [password, setPassword] = useState("");
@@ -10,6 +11,8 @@ export default function ChancePassword() {
   const errorMessage = useSelector((state) => state.user.errorMessage);
 
   return (
+    <div class="grid-rows-1">
+    <Navbar />
     <div className="flex items-center justify-center h-screen">
       <div className="border">
         <div className="text-center">
@@ -50,6 +53,7 @@ export default function ChancePassword() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
