@@ -1,14 +1,20 @@
-const usersData = [
+const users = [
   {
     id: 0,
-    name: "Zack",
-    email: "zack@mailinator.com",
-    password: "1234",
+    name: "Dayi",
+    email: "karon.marin@ucr.ac.cr",
+    password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
   },
   {
     id: 1,
-    name: "Dante",
-    email: "dante@mailinator.com",
+    name: "Jen",
+    email: "jennifer.villalobos@ucr.ac.cr",
+    password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
+  },
+  {
+    id: 2,
+    name: "Diego",
+    email: "diego.echeverria@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
   },
 ];
@@ -36,6 +42,10 @@ const userRoles = [
   {
     idRol: [1],
     idUSer: 1,
+  },
+  {
+    idRol: [3],
+    idUSer: 2,
   },
 ];
 
@@ -172,9 +182,21 @@ const NFTdata = [
     },
   ];
 
+const recoveryCodes = [
+  {
+    idUser: 0,
+    code: 569874,
+  },
+  {
+    idUser: 1,
+    code: 123456789,
+  },
+];
+
 module.exports = {
-    usersData,
+    users,
     roles,
     userRoles,
-    NFTdata
+    NFTdata,
+    recoveryCodes
 }
