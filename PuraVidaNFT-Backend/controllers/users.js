@@ -9,11 +9,15 @@ exports.createUser = async (req, res) => {
   try {
     const userPayload = req.body; 
     let lenght = data.users.length;
+
     encryptedPassword = await bcrypt.hash(userPayload.password, saltRounds);
     data.users.push({id: lenght, name: userPayload.name, email: userPayload.email, password: encryptedPassword});
+    
     console.log(data.users);
+    
     res.json({
       userData: data.users});
+      
   } catch (error) {
     res.status(500).json({
       message: "Error al registrar el usuario",
@@ -26,16 +30,22 @@ exports.editUser = async (req, res) => {
     const userPayload = req.body; 
     const users = data.users;
     const idUser = userPayload.id;
+
     console.log(users);
+
+    let updatedUser;
     for(let user of data.users){
       if(user.id === idUser){
         user.name = userPayload.name;
-        user.email = userPayload.email;  
+        user.email = userPayload.email;
+        updatedUser = user;
     }
   }
     console.log(data.users);
     res.json({
-      userData: users});
+      ...updatedUser,
+    });
+
   } catch (error) {
     res.status(500).json({
       message: "Error al editar usuario el usuario",
@@ -68,7 +78,7 @@ exports.loginUser = async (req, res) => {
     }
 
     const user = found;
-    //delete user.password;
+    delete user.password;
 
     const userRoles = data.userRoles;
     const roles = userRoles.find(obj => {
@@ -164,9 +174,11 @@ exports.resetPassword = async (req, res) => {
     }
 
     // Update new password
+    let updatedUser;
     for(let i = 0; i < data.users.length; i++) {
       if(data.users[i].id == user.id){
         data.users[i].password = await bcrypt.hash(userPayload.password, saltRounds);
+        updatedUser = data.users[i];
       }
     };
 
@@ -177,14 +189,15 @@ exports.resetPassword = async (req, res) => {
       }
     };
 
-    res.status(204).send();
+    res.json({
+      ...updatedUser,
+    });
   } catch (error) {
     res.status(500).send("Server error: " + error);
   }
 };
 
 exports.changePassword = async (req, res) => {
-  console.log("Entra a change");
   try {
     const userPayload = req.body;
     let user;
@@ -212,24 +225,19 @@ exports.changePassword = async (req, res) => {
       return;
     }
 
-    console.log("Antes del cambio");
-    for(let i = 0; i < data.users.length; i++) {
-      console.log("name: " + data.users[i].name + " password: " + data.users[i].password);
-    };
-
     // Update new password
+    let updatedUser;
     for(let i = 0; i < data.users.length; i++) {
       if(data.users[i].id == user.id){
         data.users[i].password = await bcrypt.hash(userPayload.password, saltRounds);
+        updatedUser = data.users[i];
       }
     };
 
-    console.log("Despues del cambio");
-    for(let i = 0; i < data.users.length; i++) {
-      console.log("name: " + data.users[i].name + " password: " + data.users[i].password);
-    };
+    res.json({
+      ...updatedUser,
+    });
 
-    res.status(204).send();
   } catch (error) {
     res.status(500).send("Server error: " + error);
   }
