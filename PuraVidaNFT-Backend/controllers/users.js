@@ -182,7 +182,6 @@ exports.resetPassword = async (req, res) => {
 };
 
 exports.changePassword = async (req, res) => {
-  console.log("Entra a change");
   try {
     const userPayload = req.body;
     let user;
@@ -210,24 +209,19 @@ exports.changePassword = async (req, res) => {
       return;
     }
 
-    console.log("Antes del cambio");
-    for(let i = 0; i < data.users.length; i++) {
-      console.log("name: " + data.users[i].name + " password: " + data.users[i].password);
-    };
-
     // Update new password
+    let updatedUser;
     for(let i = 0; i < data.users.length; i++) {
       if(data.users[i].id == user.id){
         data.users[i].password = await bcrypt.hash(userPayload.password, saltRounds);
+        updatedUser = data.users[i];
       }
     };
 
-    console.log("Despues del cambio");
-    for(let i = 0; i < data.users.length; i++) {
-      console.log("name: " + data.users[i].name + " password: " + data.users[i].password);
-    };
+    res.json({
+      ...updatedUser,
+    });
 
-    res.status(204).send();
   } catch (error) {
     res.status(500).send("Server error: " + error);
   }
