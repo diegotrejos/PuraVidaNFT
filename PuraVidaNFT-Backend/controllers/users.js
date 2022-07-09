@@ -7,22 +7,13 @@ const saltRounds = 10;
 
 exports.createUser = async (req, res) => {
   try {
-    const query = getQuery();
-    const userPayload = req.body;
-    const sql = `INSERT INTO puravidanft.User
-          (name,
-          email,
-          password)
-          VALUES (
-              '${userPayload.name}',
-              '${userPayload.email}',
-              '${await bcrypt.hash(userPayload.password, saltRounds)}'
-              );
-      `;
-    const result = await query(sql);
-    const querySelect = `SELECT id, name, email FROM puravidanft.User WHERE id=${result.insertId}`;
-    const user = await query(sqlSelect);
-    res.json(user[0]);
+    const userPayload = req.body; 
+    let lenght = data.usersData.length;
+    encryptedPassword = await bcrypt.hash(userPayload.password, saltRounds);
+    data.usersData.push({id: lenght, name: userPayload.name, email: userPayload.email, password: encryptedPassword});
+    console.log(data.usersData);
+    res.json({
+      userData: data.usersData});
   } catch (error) {
     res.status(500).json({
       message: "Error al registrar el usuario",

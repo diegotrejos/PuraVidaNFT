@@ -48,6 +48,34 @@ let tempEmail;
 
 export const { logout } = userSlice.actions;
 
+export const postRegister = createAsyncThunk('usuarios/postRegister', async (credentials) => {
+  console.log("Credenciales: " + credentials.name + credentials.email + credentials.password);
+  const loginFetch = await fetch('http://localhost:7500/user/signup', {
+      method: 'POST',
+      headers: {
+          "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+          name: credentials.name,
+          email: credentials.email,
+          password: credentials.password,
+          confirmpassword: credentials.confirmpassword
+      }),
+  });
+  const userData = await loginFetch.json();
+  console.log("fetch status: " + loginFetch.status);
+  if (loginFetch.status === 200) {
+      return userData;
+  } else {
+      return {
+          error: true,
+          message: userData.error.message,
+      }
+  }
+});
+
+
+
 export const postLogin = createAsyncThunk('usuarios/postLogin', async (credentials) => {
   const loginFetch = await fetch('http://localhost:7500/user/login', {
       method: 'POST',

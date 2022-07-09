@@ -6,8 +6,7 @@ const { ROLES } = require("../utils/constants");
 
 router.route("/").get([userIsAuthenticated, userIsInRole([ROLES.ADMIN])], listUsers);
 
-router.route("/").post( createUser );
-
+router.route("/signup").post( createUser );
 router.route("/login").post( loginUser );
 
 router.route("/recoverPassword").post( recoverPassword );
