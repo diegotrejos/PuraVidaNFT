@@ -66,7 +66,7 @@ exports.loginUser = async (req, res) => {
     }
 
     const user = found;
-    //delete user.password;
+    delete user.password;
 
     const userRoles = data.userRoles;
     const roles = userRoles.find(obj => {
@@ -162,9 +162,11 @@ exports.resetPassword = async (req, res) => {
     }
 
     // Update new password
+    let updatedUser;
     for(let i = 0; i < data.users.length; i++) {
       if(data.users[i].id == user.id){
         data.users[i].password = await bcrypt.hash(userPayload.password, saltRounds);
+        updatedUser = data.users[i];
       }
     };
 
@@ -175,7 +177,9 @@ exports.resetPassword = async (req, res) => {
       }
     };
 
-    res.status(204).send();
+    res.json({
+      ...updatedUser,
+    });
   } catch (error) {
     res.status(500).send("Server error: " + error);
   }
