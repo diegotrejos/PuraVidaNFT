@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { postEditAccount } from "../../Slices/userSlice";
+import { patchEditAccount } from "../../Slices/userSlice";
 import Navbar from "../../Component/Navbar/index.js";
 
 export default function EditAccount() {
@@ -87,7 +87,7 @@ export default function EditAccount() {
            onClick={() => {
             console.log('antes del dispatch en editar usuario');
             dispatch(
-              postEditAccount({
+              patchEditAccount({
                 id,
                 name,
                 email,
