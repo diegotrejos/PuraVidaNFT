@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { postEditAccount } from "../../Slices/userSlice";
 import Navbar from "../../Component/Navbar/index.js";
 
 export default function EditAccount() {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user.user);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const id = user.id;
   const theme = useSelector((state) => state.app.theme);
-
+ 
+  const dispatch = useDispatch(); 
   return (
     <div className="grid-rows-2">
       <Navbar />
@@ -17,10 +21,12 @@ export default function EditAccount() {
           <div className="mb-8 ">
             <h1 className=" text-3xl font-bold">Editar Cuenta :</h1>
           </div>
-
+          <div className="mb-4">
+          <p>Nombre:</p>
+          </div>
           <div className="mb-8">
             <input
-              placeholder="Nombre"
+              placeholder =  {user.name}
               className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
               value={name}
               onChange={(evt) => {
@@ -28,9 +34,12 @@ export default function EditAccount() {
               }}
             />
           </div>
+          <div className="mb-4">
+          <p>Email:</p>
+          </div>
           <div className="mb-8">
             <input
-              placeholder="Email"
+              placeholder={user.email}
               className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
               value={email}
               onChange={(evt) => {
@@ -74,7 +83,18 @@ export default function EditAccount() {
       </div>
       <div className="flex justify-center">
         <div className="mb-4">
-          <button className="h-[48px] w-[300px] rounded-md bg-purple-500 text-white">
+          <button className="h-[48px] w-[300px] rounded-md bg-purple-500 text-white"
+           onClick={() => {
+            console.log('antes del dispatch en editar usuario');
+            dispatch(
+              postEditAccount({
+                id,
+                name,
+                email,
+              })
+            );
+            console.log('Despues del dispach de editar usuario');
+          }}>
             Confirmar Cambios
           </button>
         </div>
