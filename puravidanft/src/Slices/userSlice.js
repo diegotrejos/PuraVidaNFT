@@ -92,7 +92,6 @@ export const postRegister = createAsyncThunk('usuarios/postRegister', async (cre
 });
 
 export const patchEditAccount = createAsyncThunk('usuarios/patchEditAccount', async (credentials) => {
-  console.log("Credenciales: " + credentials.name + credentials.email + credentials.password);
   const editAccountFetch = await fetch('http://localhost:7500/user/editaccount', {
       method: 'PATCH',
       headers: {
@@ -104,10 +103,7 @@ export const patchEditAccount = createAsyncThunk('usuarios/patchEditAccount', as
           email: credentials.email,
       }),
   });
-  console.log("Se cae");
   const userData = await editAccountFetch.json();
-  console.log("lllllllllllllllllllllllllllll");
-  console.log("fetch status: " + editAccountFetch.status);
   if (editAccountFetch.status === 200) {
       return userData;
   } else {

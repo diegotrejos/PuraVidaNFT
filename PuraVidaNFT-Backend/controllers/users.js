@@ -9,11 +9,15 @@ exports.createUser = async (req, res) => {
   try {
     const userPayload = req.body; 
     let lenght = data.users.length;
+
     encryptedPassword = await bcrypt.hash(userPayload.password, saltRounds);
     data.users.push({id: lenght, name: userPayload.name, email: userPayload.email, password: encryptedPassword});
+    
     console.log(data.users);
+    
     res.json({
       userData: data.users});
+      
   } catch (error) {
     res.status(500).json({
       message: "Error al registrar el usuario",
@@ -26,16 +30,22 @@ exports.editUser = async (req, res) => {
     const userPayload = req.body; 
     const users = data.users;
     const idUser = userPayload.id;
+
     console.log(users);
+
+    let updatedUser;
     for(let user of data.users){
       if(user.id === idUser){
         user.name = userPayload.name;
-        user.email = userPayload.email;  
+        user.email = userPayload.email;
+        updatedUser = user;
     }
   }
     console.log(data.users);
     res.json({
-      userData: users});
+      ...updatedUser,
+    });
+
   } catch (error) {
     res.status(500).json({
       message: "Error al editar usuario el usuario",
