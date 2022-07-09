@@ -8,11 +8,12 @@ const saltRounds = 10;
 exports.createUser = async (req, res) => {
   try {
     const userPayload = req.body; 
-    let lenght = data.usersData.length;
+    let lenght = data.users.length;
     encryptedPassword = await bcrypt.hash(userPayload.password, saltRounds);
-    data.usersData.push({id: lenght, name: userPayload.name, email: userPayload.email, password: encryptedPassword});
+    data.users.push({id: lenght, name: userPayload.name, email: userPayload.email, password: encryptedPassword});
+    console.log(data.users);
     res.json({
-      userData: data.usersData});
+      userData: data.users});
   } catch (error) {
     res.status(500).json({
       message: "Error al registrar el usuario",
@@ -23,15 +24,16 @@ exports.createUser = async (req, res) => {
 exports.editUser = async (req, res) => {
   try {
     const userPayload = req.body; 
-    const users = data.usersData;
+    const users = data.users;
     const idUser = userPayload.id;
-    for(let user of data.usersData){
+    console.log(users);
+    for(let user of data.users){
       if(user.id === idUser){
         user.name = userPayload.name;
-        user.email = userPayload.email;   
+        user.email = userPayload.email;  
     }
   }
-    console.log(data.usersData);
+    console.log(data.users);
     res.json({
       userData: users});
   } catch (error) {

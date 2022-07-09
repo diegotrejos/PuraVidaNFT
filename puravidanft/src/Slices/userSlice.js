@@ -50,7 +50,7 @@ const userSlice = createSlice({
               state.errorMessage = "";
             }
           })
-          .addCase(postEditAccount.fulfilled, (state, action) => {
+          .addCase(patchEditAccount.fulfilled, (state, action) => {
             if (action.payload.error){
               state.errorMessage = action.payload.message
             } else {
@@ -92,10 +92,10 @@ export const postRegister = createAsyncThunk('usuarios/postRegister', async (cre
   }
 });
 
-export const postEditAccount = createAsyncThunk('usuarios/postEditAccount', async (credentials) => {
+export const patchEditAccount = createAsyncThunk('usuarios/patchEditAccount', async (credentials) => {
   console.log("Credenciales: " + credentials.name + credentials.email + credentials.password);
   const editAccountFetch = await fetch('http://localhost:7500/user/editaccount', {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
           "Content-type": "application/json",
       },
