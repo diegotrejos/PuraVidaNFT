@@ -37,7 +37,7 @@ export const { logout } = userSlice.actions;
 
 export const postRegister = createAsyncThunk('usuarios/postRegister', async (credentials) => {
   console.log("Credenciales: " + credentials.name + credentials.email + credentials.password);
-  const loginFetch = await fetch('http://localhost:7500/user/signup', {
+  const registerFetch = await fetch('http://localhost:7500/user/signup', {
       method: 'POST',
       headers: {
           "Content-type": "application/json",
@@ -49,9 +49,9 @@ export const postRegister = createAsyncThunk('usuarios/postRegister', async (cre
           confirmpassword: credentials.confirmpassword
       }),
   });
-  const userData = await loginFetch.json();
-  console.log("fetch status: " + loginFetch.status);
-  if (loginFetch.status === 200) {
+  const userData = await registerFetch.json();
+  console.log("fetch status: " + registerFetch.status);
+  if (registerFetch.status === 200) {
       return userData;
   } else {
       return {
@@ -61,7 +61,32 @@ export const postRegister = createAsyncThunk('usuarios/postRegister', async (cre
   }
 });
 
-
+export const postEditAccount = createAsyncThunk('usuarios/postEditAccount', async (credentials) => {
+  console.log("Credenciales: " + credentials.name + credentials.email + credentials.password);
+  const editAccountFetch = await fetch('http://localhost:7500/user/editaccount', {
+      method: 'POST',
+      headers: {
+          "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+          id: credentials.id,
+          name: credentials.name,
+          email: credentials.email,
+      }),
+  });
+  console.log("Se cae");
+  const userData = await editAccountFetch.json();
+  console.log("lllllllllllllllllllllllllllll");
+  console.log("fetch status: " + editAccountFetch.status);
+  if (editAccountFetch.status === 200) {
+      return userData;
+  } else {
+      return {
+          error: true,
+          message: userData.error.message,
+      }
+  }
+});
 
 export const postLogin = createAsyncThunk('usuarios/postLogin', async (credentials) => {
   console.log("Credenciales: " + credentials.email + credentials.password);

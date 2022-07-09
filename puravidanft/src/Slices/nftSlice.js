@@ -37,6 +37,32 @@ const productSlice = createSlice({
 
 export const { cleanState } = productSlice.actions;
 
+export const  postAddNFT = createAsyncThunk('products/createProduct', async ({ product }) => {
+    console.log("NFT: " + product.name + product.price + product.author + product.category);
+    const nftFetch = await fetch('http://localhost:7500/NFT/uploadNFT', {
+        method: 'POST',
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+            name: product.name,
+            price: product.price,
+            author: product.author,
+            category: product.category
+        }),
+    });
+    const nftData = await nftFetch.json();
+    console.log("fetch status: " + nftFetch.status);
+    if (nftFetch.status === 200) {
+        return nftData;
+    } else {
+        return {
+            error: true,
+            message: nftData.error.message,
+        }
+    }
+  });
+
 export const createProduct = createAsyncThunk('products/createProduct', async ({ product, productPicture }) => {
     const formData = new FormData();
     formData.append('file', productPicture);
@@ -63,5 +89,6 @@ export const createProduct = createAsyncThunk('products/createProduct', async ({
         }
     }
 });
+
 
 export default productSlice.reducer;
