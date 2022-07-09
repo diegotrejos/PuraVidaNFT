@@ -54,14 +54,12 @@ export default function Login() {
             <button
               className="h-[48px] w-[150px] rounded-md bg-purple-500 text-white"
               onClick={() => {
-                console.log('antes del dispatch');
                 dispatch(
                   postLogin({
                     email,
                     password,
                   })
                 );
-                console.log('logged in: ' + userIsLoggedIn);
               }}
             >
               Iniciar Sesión

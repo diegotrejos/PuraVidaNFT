@@ -66,7 +66,7 @@ export default function NFTDetails() {
                     Precio del NFT: {location.state.price}
                   </p>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Saldo se de billetera: $6000
+                    Saldo de la billetera: $6000
                   </p>
                 </div>
                 {/*footer*/}

@@ -24,7 +24,7 @@ exports.createUser = async (req, res) => {
 exports.loginUser = async (req, res) => {
   try {
     const userPayload = req.body;
-    const users = data.usersData;
+    const users = data.users;
     const found = users.find(obj => {
         return obj.email === userPayload.email;
       });
@@ -73,28 +73,34 @@ exports.loginUser = async (req, res) => {
 
 exports.recoverPassword = async (req, res) => {
   try {
-    const query = getQuery();
     const userPayload = req.body;
-    const queryUserSQL = `SELECT id, email FROM puravidanft.User WHERE email = '${userPayload.email}';`;
-    const result = await query(queryUserSQL);
+    const users = data.users;
+    const found = users.find(obj => {
+        return obj.email === userPayload.email;
+      });
 
-    if (!result[0]) {
-      res.status(401).send("Datos inválidos");
+    if (!found) {
+      res.status(401).send("Credenciales invalidos.");
       return;
     }
 
-    const user = result[0];
+    const user = found; 
     const randomToken = Math.floor(
       Math.random() * (999999 - 100000 + 1) + 100000
     );
 
-    const deleteCodeSQL = `DELETE puravidanft.Recovery_Codes WHERE id = ${user.id};`;
-    await query(deleteCodeSQL);
+    // Delete old codes from same user
+    for(let i = 0; i < data.recoveryCodes.length; i++) {
+      if(data.recoveryCodes[i].idUser == user.id){
+        data.recoveryCodes.splice(i, 1);
+      }
+    };
 
-    const insertCodeSQL = `INSERT INTO puravidanft.Recovery_Codes
-    (idUser, code)
-    VALUES(${user.id}, ${randomToken});`;
-    await query(insertCodeSQL);
+    // Insert new code into table
+    data.recoveryCodes.push({
+      idUser: user.id,
+      code: randomToken
+      });
 
     await sendRecoveryCodeEmail(user.email, randomToken);
 
@@ -106,27 +112,47 @@ exports.recoverPassword = async (req, res) => {
 
 exports.resetPassword = async (req, res) => {
   try {
-    const query = getQuery();
     const userPayload = req.body;
-    const queryUserSQL = `SELECT u.id, rc.code
-    FROM Recovery_Codes rc
-    JOIN User u ON rc.userId = u.id
-    WHERE u.email = '${userPayload.email}';`;
+    let user;
 
-    const result = await query(queryUserSQL);
-    if (!result[0] || result[0].code !== userPayload.code) {
-      res.status(401).send("Datos inválidos");
+    // Search user
+    for(let i = 0; i < data.users.length; i++) {
+      if(data.users[i].email == userPayload.email){
+        user = data.users[i];
+      }
+    };
+
+    if (user == undefined) {
+      res.status(401).send("Credenciales inválidos.");
       return;
     }
 
-    const userCode = result[0];
-    const updatePasswordSQL = `UPDATE puravidanft.User
-    SET password='${await bcrypt.hash(userPayload.password, saltRounds)}'
-    WHERE id=${userCode.id};`;
-    await query(updatePasswordSQL);
+    // Validate restore code
+    let userCode;
+    for(let i = 0; i < data.recoveryCodes.length; i++) {
+      if(data.recoveryCodes[i].idUser == user.id && data.recoveryCodes[i].code == userPayload.code){
+        userCode = data.recoveryCodes[i].code;
+      }
+    };
 
-    const deleteCodeSQL = `DELETE puravidanft.Recovery_Codes WHERE id = ${userCode.id};`;
-    await query(deleteCodeSQL);
+    if (userCode == undefined) {
+      res.status(401).send("Código incorrecto.");
+      return;
+    }
+
+    // Update new password
+    for(let i = 0; i < data.users.length; i++) {
+      if(data.users[i].id == user.id){
+        data.users[i].password = await bcrypt.hash(userPayload.password, saltRounds);
+      }
+    };
+
+    // Delete old codes from same user
+    for(let i = 0; i < data.recoveryCodes.length; i++) {
+      if(data.users[i].idUSer == user.id){
+        data.recoveryCodes.splice(i, 1);
+      }
+    };
 
     res.status(204).send();
   } catch (error) {
