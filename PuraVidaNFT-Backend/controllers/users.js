@@ -11,7 +11,6 @@ exports.createUser = async (req, res) => {
     let lenght = data.usersData.length;
     encryptedPassword = await bcrypt.hash(userPayload.password, saltRounds);
     data.usersData.push({id: lenght, name: userPayload.name, email: userPayload.email, password: encryptedPassword});
-    console.log(data.usersData);
     res.json({
       userData: data.usersData});
   } catch (error) {
@@ -20,6 +19,28 @@ exports.createUser = async (req, res) => {
     });
   }
 };
+
+exports.editUser = async (req, res) => {
+  try {
+    const userPayload = req.body; 
+    const users = data.usersData;
+    const idUser = userPayload.id;
+    for(let user of data.usersData){
+      if(user.id === idUser){
+        user.name = userPayload.name;
+        user.email = userPayload.email;   
+    }
+  }
+    console.log(data.usersData);
+    res.json({
+      userData: users});
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al editar usuario el usuario",
+    });
+  }
+};
+
 
 exports.loginUser = async (req, res) => {
   try {
