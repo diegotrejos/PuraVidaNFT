@@ -10,10 +10,10 @@ export default function EditAccount() {
   const theme = useSelector((state) => state.app.theme);
 
   return (
-    <div class="grid-rows-2">
+    <div className="grid-rows-2">
       <Navbar />
-      <div class="flex m-20 mr-4">
-        <div class="w-1/2 p-8">
+      <div className="flex m-20 mr-4">
+        <div className="w-1/2 p-8">
           <div className="mb-8 ">
             <h1 className=" text-3xl font-bold">Editar Cuenta :</h1>
           </div>
@@ -47,7 +47,7 @@ export default function EditAccount() {
             </button>
           </div>
         </div>
-        <div class="w-1/2 p-4">
+        <div className="w-1/2 p-4">
           <div className="mb-4 flex justify-center ">
             <img
               className={`${"w-80"} ${"h-80"}`}
@@ -62,7 +62,7 @@ export default function EditAccount() {
           </div>
         </div>
       </div>
-      <div class="flex justify-center">
+      <div className="flex justify-center">
         <div className=" mb-4">
           <button
             className="h-[48px] w-[300px] rounded-md bg-gray-500 text-white"
@@ -72,7 +72,7 @@ export default function EditAccount() {
           </button>
         </div>
       </div>
-      <div class="flex justify-center">
+      <div className="flex justify-center">
         <div className="mb-4">
           <button className="h-[48px] w-[300px] rounded-md bg-purple-500 text-white">
             Confirmar Cambios

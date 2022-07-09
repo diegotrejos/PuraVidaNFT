@@ -1,17 +1,20 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../Component/Navbar/index.js";
+import { changePassword } from "../../Slices/userSlice";
 
-export default function ChancePassword() {
+export default function ChangePassword() {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
 
-  const theme = useSelector((state) => state.app.theme);
   const errorMessage = useSelector((state) => state.user.errorMessage);
+  const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
-    <div class="grid-rows-1">
+    <div className="grid-rows-1">
     <Navbar />
     <div className="flex items-center justify-center h-screen">
       <div className="border">
@@ -22,7 +25,7 @@ export default function ChancePassword() {
           <div className="mb-8">
             <input
               placeholder="Contraseña"
-              className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
+              className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md`}
               type="password"
               value={password}
               onChange={(evt) => {
@@ -33,7 +36,7 @@ export default function ChancePassword() {
           <div className="mb-8">
             <input
               placeholder="Confirmar contraseña"
-              className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md ${theme.inputBg} ${theme.inputText}`}
+              className={`placeholder:text-black pl-4 h-[48px] w-full rounded-md`}
               type="password"
               value={confirmpassword}
               onChange={(evt) => {
@@ -47,6 +50,18 @@ export default function ChancePassword() {
           <div className="mb-8">
             <button
               className="h-[48px] w-[200px] rounded-md bg-purple-500 text-white"
+              onClick={() => {
+              console.log("Entra.\nPassword: " + password + " Confirm: " + confirmpassword);
+                console.log("Current_Pass: " + user.password);
+                dispatch(
+                  changePassword({
+                   password,
+                   confirmpassword,
+                 })
+               );
+               navigate("/editaccount");
+               console.log("entra. Changed_Pass: " + user.password);
+              }}
             >
               Cambiar contraseña
             </button>

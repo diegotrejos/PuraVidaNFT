@@ -45,7 +45,7 @@ exports.loginUser = async (req, res) => {
     }
 
     const user = found;
-    delete user.password;
+    //delete user.password;
 
     const userRoles = data.userRoles;
     const roles = userRoles.find(obj => {
@@ -152,6 +152,58 @@ exports.resetPassword = async (req, res) => {
       if(data.users[i].idUSer == user.id){
         data.recoveryCodes.splice(i, 1);
       }
+    };
+
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).send("Server error: " + error);
+  }
+};
+
+exports.changePassword = async (req, res) => {
+  console.log("Entra a change");
+  try {
+    const userPayload = req.body;
+    let user;
+
+    // Search user
+    for(let i = 0; i < data.users.length; i++) {
+      if(data.users[i].email == userPayload.email){
+        user = data.users[i];
+      }
+    };
+
+    if (user == undefined) {
+      res.status(401).send("Credenciales inválidos.");
+      return;
+    }
+
+    // Check that the passwords are the same
+    let same = false;
+    if (userPayload.password == userPayload.confirm){
+      same = true;
+    }
+
+    if (!same) {
+      res.status(401).send("Contraseñas inválidas.");
+      return;
+    }
+
+    console.log("Antes del cambio");
+    for(let i = 0; i < data.users.length; i++) {
+      console.log("name: " + data.users[i].name + " password: " + data.users[i].password);
+    };
+
+    // Update new password
+    for(let i = 0; i < data.users.length; i++) {
+      if(data.users[i].id == user.id){
+        data.users[i].password = await bcrypt.hash(userPayload.password, saltRounds);
+      }
+    };
+
+    console.log("Despues del cambio");
+    for(let i = 0; i < data.users.length; i++) {
+      console.log("name: " + data.users[i].name + " password: " + data.users[i].password);
     };
 
     res.status(204).send();

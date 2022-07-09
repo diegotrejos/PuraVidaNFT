@@ -8,8 +8,6 @@ export default function Navbar(props) {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const user = useSelector((state) => state.user.user);
-  const button = document.querySelector("#menu-button"); // Hamburger Icon
-  const menu = document.querySelector("#menu"); // Menu
 
   return (
     <div>

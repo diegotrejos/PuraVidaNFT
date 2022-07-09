@@ -41,6 +41,15 @@ const userSlice = createSlice({
               state.errorMessage = "";
             }
           })
+          .addCase(changePassword.fulfilled, (state, action) => {
+            if (action.payload.error){
+              state.errorMessage = action.payload.message
+            } else {
+              state.isLoggedIn = true;
+              state.user = action.payload;
+              state.errorMessage = "";
+            }
+          })
   },
 });
 
@@ -73,8 +82,6 @@ export const postRegister = createAsyncThunk('usuarios/postRegister', async (cre
       }
   }
 });
-
-
 
 export const postLogin = createAsyncThunk('usuarios/postLogin', async (credentials) => {
   const loginFetch = await fetch('http://localhost:7500/user/login', {
@@ -130,6 +137,30 @@ export const resetPassword = createAsyncThunk('usuarios/resetPassword', async (c
           email: tempEmail,
           code: credentials.code,
           password: credentials.password
+      }),
+  });
+  const userData = await loginFetch.json();
+  if (loginFetch.status === 200) {
+      return userData;
+  } else {
+      return {
+          error: true,
+          message: userData.error.message,
+      }
+  }
+});
+
+export const changePassword = createAsyncThunk('usuarios/changePassword', async (credentials) => {
+  console.log("pass: " + credentials.password + " confirm: " + credentials.confirmpassword + " email: " + this.user.email);
+  const loginFetch = await fetch('http://localhost:7500/user/changePassword', {
+      method: 'PATCH',
+      headers: {
+          "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+          email: this.user.email,
+          password: credentials.password,
+          confirm: credentials.confirmpassword
       }),
   });
   const userData = await loginFetch.json();

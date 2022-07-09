@@ -109,6 +109,7 @@ export default function RecoverPassword() {
                               })
                             );
                             setShowModal(false);
+                            navigate("/login")
                             }
                           }
                         >
