@@ -16,6 +16,6 @@ router.route("/resetPassword").patch( resetPassword );
 
 router.route("/changePassword").patch( changePassword );
 
-router.route("/editaccount").post( editUser );
+router.route("/editaccount").patch( editUser );
 
 module.exports = router;

@@ -2,7 +2,7 @@ const data = require("../utils/data");
 
 exports.createNFT = async (req, res) => {
     try {
-      console.log("Se cae");
+      console.log("Entra a createNFT");
       const userPayload = req.body; 
       let lenght = data.NFTdata.length;
       data.NFTdata.push({id: lenght, name: userPayload.name, price: userPayload.price, author: userPayload.author, likes: 0, category: userPayload.category });
