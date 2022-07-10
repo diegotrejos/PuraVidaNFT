@@ -1,6 +1,8 @@
 const data = require("../utils/data");
 
 exports.createNFT = async (req, res) => {
+       /* 	#swagger.tags = ['NFT']
+      #swagger.description = 'Endpoint crear NFTs' */
     try {
       console.log("Entra a createNFT");
       const userPayload = req.body; 

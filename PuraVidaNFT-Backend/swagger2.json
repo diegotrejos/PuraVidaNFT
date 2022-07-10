@@ -1,0 +1,348 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Este es la documentacion del backend de PuraVidaNFT",
+        "version": "2.0.0",
+        "title": "PuraVidaNFT",
+        "contact": {
+            "email": "diego.trejosecheverria@ucr.ac.cr"
+        }
+    },
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "host": "localhost:7500",
+    "basePath": "/puravidaNFT-Backend",
+    "paths": {
+        "/users/createUser": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Se agrega un usuario",
+                        "schema": {
+                            "$ref": "#/definitions/CreateUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Error al registrar el usuario"
+                    }
+                }
+            }
+        },
+        "/users/editUser": {
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Editar un usuario existente",
+                        "schema": {
+                            "$ref": "#/definitions/EditUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "500": {
+                        "description": "Error al editar usuario"
+                    }
+                }
+            }
+        },
+        "/users/loginUser": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Permitirle a un usuario iniciar sesión, luego de verificar si el usuario existe o si la clave esta correcta",
+                        "schema": {
+                            "$ref": "#/definitions/LoginUser"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bienvenido"
+                    },
+                    "401": {
+                        "description": "Credenciales inválidos"
+                    },
+                    "500": {
+                        "description": "Error al iniciar sesión"
+                    }
+                }
+            }
+        },
+        "/users/recoverPassword": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Recuperar la clave",
+                        "schema": {
+                            "$ref": "#/definitions/RecoverPassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Credenciales inválidos"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/users/resetPassword": {
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Reinstaura clave",
+                        "schema": {
+                            "$ref": "#/definitions/ResetPassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Credenciales inválidos"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/users/changePassword": {
+            "patch": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "obj",
+                        "in": "body",
+                        "description": "Cambiar clave",
+                        "schema": {
+                            "$ref": "#/definitions/ChangePassword"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Credenciales inválidos"
+                    },
+                    "500": {
+                        "description": "Server Error"
+                    }
+                }
+            }
+        },
+        "/users/listUsers": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Muesta todos los usuarios",
+                "responses": {
+                    "200": {
+                        "description": "Operacion correcta",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                            "$ref": "#/definitions/Users"
+                            }
+                        }
+                    }
+                },
+                "400": {
+                    "description": "Credenciales inválidos"
+                },
+                "500": {
+                    "description": "Server Error"
+                }
+            }
+        
+    }
+},
+
+"definitions": {
+    "CreateUser": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "example": "José Rodríguez Pérez"
+            },
+            "email": {
+                "type": "string",
+                "example": "jose@correo.com"
+            },
+            "password": {
+                "type": "string",
+                "example": "patito"
+            },
+            "countryCode": {
+                "type": "number",
+                "example": 506
+            },
+            "phone": {
+                "type": "number",
+                "example": 70155104
+            },
+            "birthday": {
+                "type": "string",
+                "example": "1989-10-16"
+            }
+        }
+    },
+    "EditUser": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "example": "José Rodríguez Pérez"
+            },
+            "password": {
+                "type": "string",
+                "example": "patito"
+            },
+            "countryCode": {
+                "type": "number",
+                "example": 506
+            },
+            "phone": {
+                "type": "number",
+                "example": 70155104
+            },
+            "birthday": {
+                "type": "string",
+                "example": "1989-10-16"
+            }
+        }
+    },
+    "LoginUser": {
+        "type": "object",
+        "properties": {
+            "email": {
+                "type": "string",
+                "example": "jose@correo.com"
+            },
+            "password": {
+                "type": "string",
+                "example": "patito"
+            }
+        }
+    },
+    "RecoverPassword": {
+        "type": "object",
+        "properties": {
+            "email": {
+                "type": "string",
+                "example": "jose@correo.com"
+            }
+        }
+    },
+    "ResetPassword": {
+        "type": "object",
+        "properties": {
+            "email": {
+                "type": "string",
+                "example": "diego@mailinator.com"
+            },
+            "password": {
+                "type": "string",
+                "example": "jkwehdg"
+            },
+            "code": {
+                "type": "number",
+                "example": 265783
+            }
+        }
+    },
+    "ChangePassword": {
+        "type": "object",
+        "properties": {
+            "email": {
+                "type": "string",
+                "example": "diego@mailinator.com"
+            },
+            "password": {
+                "type": "string",
+                "example": "12faaa"
+            }
+        }
+    },
+    "CreateItem": {
+        "type": "object",
+        "properties": {
+            "nombre": {
+                "type": "string",
+                "example": "Reloj de vestir"
+            },
+            "descripcion": {
+                "type": "string",
+                "example": "Este es un fino reloj del 2017"
+            },
+            "categoria": {
+                "type": "number",
+                "example": 2
+            },
+            "condicion": {
+                "type": "number",
+                "example": 2
+            },
+            "provincia": {
+                "type": "number",
+                "example": 1
+            },
+            "foto": {
+                "type": "string",
+                "example": "https://ejemplo.com/foto.jpg"
+            }
+        }
+    }
+}
+}
