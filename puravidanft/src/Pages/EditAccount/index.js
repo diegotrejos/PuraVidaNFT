@@ -59,10 +59,10 @@ function EditAccount() {
           </div>
         </div>
         <div className="w-1/2 p-8">
-        <div className="mb-4">
+        <div className=" text-black p-2 h-[700px] w-[600px] ">
         <label htmlFor="productPhoto"></label>
             <input
-              className="block h-[400px] w-[600px] mb-8 border rounded-md"
+              className="block h-[100px] w-[600px] mb-8 border rounded-md"
               id="productPhoto"
               onChange={(evt) => {
                 setProductPicture(evt.target.files[0]);
