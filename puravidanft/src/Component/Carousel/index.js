@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Frame from "../../Component/Frame/index.js";
 // Data
 
 const data = {
@@ -145,7 +143,6 @@ const Carousel = (props) => {
   const maxScrollWidth = useRef(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carousel = useRef(null);
-  const theme = useSelector((state) => state.app.theme);
   
 
   const movePrev = () => {

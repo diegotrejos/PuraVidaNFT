@@ -11,7 +11,6 @@ const userSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.isLoggedIn = false;
-      console.log(state.isLoggedIn)
     }
   },
     extraReducers(builder) {
@@ -41,6 +40,24 @@ const userSlice = createSlice({
               state.errorMessage = "";
             }
           })
+          .addCase(updatePassword.fulfilled, (state, action) => {
+            if (action.payload.error){
+              state.errorMessage = action.payload.message
+            } else {
+              state.isLoggedIn = true;
+              state.user = action.payload;
+              state.errorMessage = "";
+            }
+          })
+          .addCase(patchEditAccount.fulfilled, (state, action) => {
+            if (action.payload.error){
+              state.errorMessage = action.payload.message
+            } else {
+              state.isLoggedIn = true;
+              state.user = action.payload;
+              state.errorMessage = "";
+            }
+          })
   },
 });
 
@@ -50,7 +67,7 @@ export const { logout } = userSlice.actions;
 
 export const postRegister = createAsyncThunk('usuarios/postRegister', async (credentials) => {
   console.log("Credenciales: " + credentials.name + credentials.email + credentials.password);
-  const loginFetch = await fetch('http://localhost:7500/user/signup', {
+  const registerFetch = await fetch('http://localhost:7500/user/signup', {
       method: 'POST',
       headers: {
           "Content-type": "application/json",
@@ -62,9 +79,9 @@ export const postRegister = createAsyncThunk('usuarios/postRegister', async (cre
           confirmpassword: credentials.confirmpassword
       }),
   });
-  const userData = await loginFetch.json();
-  console.log("fetch status: " + loginFetch.status);
-  if (loginFetch.status === 200) {
+  const userData = await registerFetch.json();
+  console.log("fetch status: " + registerFetch.status);
+  if (registerFetch.status === 200) {
       return userData;
   } else {
       return {
@@ -74,7 +91,28 @@ export const postRegister = createAsyncThunk('usuarios/postRegister', async (cre
   }
 });
 
-
+export const patchEditAccount = createAsyncThunk('usuarios/patchEditAccount', async (credentials) => {
+  const editAccountFetch = await fetch('http://localhost:7500/user/editaccount', {
+      method: 'PATCH',
+      headers: {
+          "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+          id: credentials.id,
+          name: credentials.name,
+          email: credentials.email,
+      }),
+  });
+  const userData = await editAccountFetch.json();
+  if (editAccountFetch.status === 200) {
+      return userData;
+  } else {
+      return {
+          error: true,
+          message: userData.error.message,
+      }
+  }
+});
 
 export const postLogin = createAsyncThunk('usuarios/postLogin', async (credentials) => {
   const loginFetch = await fetch('http://localhost:7500/user/login', {
@@ -100,7 +138,7 @@ export const postLogin = createAsyncThunk('usuarios/postLogin', async (credentia
 
 export const recoverPassword = createAsyncThunk('usuarios/recoverPassword', async (credentials) => {
   tempEmail = credentials.recoverEmail;
-  const loginFetch = await fetch('http://localhost:7500/user/recoverPassword', {
+  const recoverFetch = await fetch('http://localhost:7500/user/recoverPassword', {
       method: 'POST',
       headers: {
           "Content-type": "application/json",
@@ -109,8 +147,8 @@ export const recoverPassword = createAsyncThunk('usuarios/recoverPassword', asyn
           email: credentials.recoverEmail
       }),
   });
-  const userData = await loginFetch.json();
-  if (loginFetch.status === 200) {
+  const userData = await recoverFetch.json();
+  if (recoverFetch.status === 200) {
       return userData;
   } else {
       return {
@@ -121,7 +159,7 @@ export const recoverPassword = createAsyncThunk('usuarios/recoverPassword', asyn
 });
 
 export const resetPassword = createAsyncThunk('usuarios/resetPassword', async (credentials) => {
-  const loginFetch = await fetch('http://localhost:7500/user/resetPassword', {
+  const resetFetch = await fetch('http://localhost:7500/user/resetPassword', {
       method: 'PATCH',
       headers: {
           "Content-type": "application/json",
@@ -132,8 +170,31 @@ export const resetPassword = createAsyncThunk('usuarios/resetPassword', async (c
           password: credentials.password
       }),
   });
-  const userData = await loginFetch.json();
-  if (loginFetch.status === 200) {
+  const userData = await resetFetch.json();
+  if (resetFetch.status === 200) {
+      return userData;
+  } else {
+      return {
+          error: true,
+          message: userData.error.message,
+      }
+  }
+});
+
+export const updatePassword = createAsyncThunk('usuarios/updatePassword', async (credentials) => {
+  const updateFetch = await fetch('http://localhost:7500/user/changePassword', {
+      method: 'PATCH',
+      headers: {
+          "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+          email: credentials.email,
+          password: credentials.password,
+          confirm: credentials.confirmpassword
+      }),
+  });
+  const userData = await updateFetch.json();
+  if (updateFetch.status === 200) {
       return userData;
   } else {
       return {

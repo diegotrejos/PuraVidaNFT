@@ -8,18 +8,51 @@ const saltRounds = 10;
 exports.createUser = async (req, res) => {
   try {
     const userPayload = req.body; 
-    let lenght = data.usersData.length;
+    let lenght = data.users.length;
+
     encryptedPassword = await bcrypt.hash(userPayload.password, saltRounds);
-    data.usersData.push({id: lenght, name: userPayload.name, email: userPayload.email, password: encryptedPassword});
-    console.log(data.usersData);
+    data.users.push({id: lenght, name: userPayload.name, email: userPayload.email, password: encryptedPassword});
+    
+    console.log(data.users);
+    
     res.json({
-      userData: data.usersData});
+      userData: data.users});
+      
   } catch (error) {
     res.status(500).json({
       message: "Error al registrar el usuario",
     });
   }
 };
+
+exports.editUser = async (req, res) => {
+  try {
+    const userPayload = req.body; 
+    const users = data.users;
+    const idUser = userPayload.id;
+
+    console.log(users);
+
+    let updatedUser;
+    for(let user of data.users){
+      if(user.id === idUser){
+        user.name = userPayload.name;
+        user.email = userPayload.email;
+        updatedUser = user;
+    }
+  }
+    console.log(data.users);
+    res.json({
+      ...updatedUser,
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al editar usuario el usuario",
+    });
+  }
+};
+
 
 exports.loginUser = async (req, res) => {
   try {
@@ -141,9 +174,11 @@ exports.resetPassword = async (req, res) => {
     }
 
     // Update new password
+    let updatedUser;
     for(let i = 0; i < data.users.length; i++) {
       if(data.users[i].id == user.id){
         data.users[i].password = await bcrypt.hash(userPayload.password, saltRounds);
+        updatedUser = data.users[i];
       }
     };
 
@@ -154,7 +189,55 @@ exports.resetPassword = async (req, res) => {
       }
     };
 
-    res.status(204).send();
+    res.json({
+      ...updatedUser,
+    });
+  } catch (error) {
+    res.status(500).send("Server error: " + error);
+  }
+};
+
+exports.changePassword = async (req, res) => {
+  try {
+    const userPayload = req.body;
+    let user;
+
+    // Search user
+    for(let i = 0; i < data.users.length; i++) {
+      if(data.users[i].email == userPayload.email){
+        user = data.users[i];
+      }
+    };
+
+    if (user == undefined) {
+      res.status(401).send("Credenciales inválidos.");
+      return;
+    }
+
+    // Check that the passwords are the same
+    let same = false;
+    if (userPayload.password == userPayload.confirm){
+      same = true;
+    }
+
+    if (!same) {
+      res.status(401).send("Contraseñas inválidas.");
+      return;
+    }
+
+    // Update new password
+    let updatedUser;
+    for(let i = 0; i < data.users.length; i++) {
+      if(data.users[i].id == user.id){
+        data.users[i].password = await bcrypt.hash(userPayload.password, saltRounds);
+        updatedUser = data.users[i];
+      }
+    };
+
+    res.json({
+      ...updatedUser,
+    });
+
   } catch (error) {
     res.status(500).send("Server error: " + error);
   }

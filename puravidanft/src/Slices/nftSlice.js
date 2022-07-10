@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const productSlice = createSlice({
+const nftSlice = createSlice({
     name: 'NFT',
     initialState: {
         success: false,
@@ -35,7 +35,33 @@ const productSlice = createSlice({
     }
 });
 
-export const { cleanState } = productSlice.actions;
+export const { cleanState } = nftSlice.actions;
+
+export const  postAddNFT = createAsyncThunk('nft/createNFT', async ({ product }) => {
+    console.log("NFT: " + product.name + product.price + product.author + product.category);
+    const nftFetch = await fetch('http://localhost:7500/nft/uploadNFT', {
+        method: 'POST',
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+            name: product.name,
+            price: product.price,
+            author: product.author,
+            category: product.category
+        }),
+    });
+    const nftData = await nftFetch.json();
+    console.log("fetch status: " + nftFetch.status);
+    if (nftFetch.status === 200) {
+        return nftData;
+    } else {
+        return {
+            error: true,
+            message: nftData.error.message,
+        }
+    }
+  });
 
 export const createProduct = createAsyncThunk('products/createProduct', async ({ product, productPicture }) => {
     const formData = new FormData();
@@ -64,4 +90,5 @@ export const createProduct = createAsyncThunk('products/createProduct', async ({
     }
 });
 
-export default productSlice.reducer;
+
+export default nftSlice.reducer;

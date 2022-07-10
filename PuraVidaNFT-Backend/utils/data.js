@@ -14,7 +14,7 @@ const users = [
   {
     id: 2,
     name: "Diego",
-    email: "diego.echeverria@ucr.ac.cr",
+    email: "diego.trejosecheverria@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
   },
 ];

@@ -4,7 +4,9 @@ const express = require("express");
 dotenv.config();
 const cors = require("cors");
 const userRoutes = require("./routes/users");
-const server = express();
+const nftRoutes = require("./routes/nft");
+
+const server = express(); //Se levanta el servidor
 server.use(express.json());
 
 
@@ -19,6 +21,7 @@ server.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Rutas
 server.use("/user", userRoutes);
+server.use("/nft", nftRoutes);
 
 server.get("/", (req, res) => {
   res.send("Bienvenido a PuraVidaNFT");
