@@ -185,6 +185,21 @@ const NFTdata = [
     },
   ];
 
+const NFTlikes = [
+    {
+      idNFT: 2,
+      likedBy: [0, 1, 2]
+    },
+    {
+      idNFT: 3,
+      likedBy: [0, 2]
+    },
+    {
+      idNFT: 4,
+      likedBy: [0]
+    },
+  ];
+
 const recoveryCodes = [
   {
     idUser: 0,
@@ -196,10 +211,46 @@ const recoveryCodes = [
   },
 ];
 
+const wallet = [
+  {
+    idWallet: 0,
+    idUser: 0,
+    balance: 12,
+  },
+  {
+    idWallet: 1,
+    idUser: 1,
+    balance: 5000,
+  },
+  {
+    idWallet: 2,
+    idUser: 2,
+    balance: 35000,
+  },
+];
+
+const myNFTs = [
+  {
+    idUser: 0,
+    NFTs: [2,3],
+  },
+  {
+    idUser: 1,
+    NFTs: [5,7,9],
+  },
+  {
+    idUser: 2,
+    NFTs: [8],
+  },
+];
+
 module.exports = {
     users,
     roles,
     userRoles,
     NFTdata,
-    recoveryCodes
+    NFTlikes,
+    recoveryCodes,
+    wallet,
+    myNFTs
 }

@@ -1,11 +1,19 @@
 import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { BsFillSuitHeartFill, BsSuitHeart} from "react-icons/bs";
 import Navbar from "../../Component/Navbar/index.js";
 import React from "react";
 
 export default function NFTDetails() {
   const location = useLocation();
+  const dispatch = useDispatch();
   const [showModal, setShowModal] = React.useState(false);
+  
+ /*  useEffect(() => {
+    dispatch(getUsers());
+  }, [dispatch]); */
+
   let liked = false;
 
   return (

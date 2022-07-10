@@ -1,17 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const nftSlice = createSlice({
-    name: 'NFT',
+    name: 'nft',
     initialState: {
         success: false,
         product: null,
         errorMessage: null,
+        nfts: null,
     },
     reducers: {
         cleanState: (state) => {
             state.success = false;
             state.product = null;
             state.errorMessage = null;
+            state.nfts = null;
         }
     },
     extraReducers(builder) {
@@ -31,6 +33,17 @@ const nftSlice = createSlice({
                 state.success = false;
                 state.product = null;
                 state.errorMessage = "Ocurrió un error al crear el producto.";
+            })
+            .addCase(getNFTs.fulfilled, (state, action) => {
+                if (action.payload.error) {
+                    state.nfts = null;
+                    state.errorMessage = action.payload.message;
+                } else {
+                    state.nfts = action.payload;
+                }
+            })
+            .addCase(getNFTs.rejected, (state) => {
+                state.nfts = null;
             })
     }
 });
@@ -86,6 +99,24 @@ export const createProduct = createAsyncThunk('products/createProduct', async ({
         return {
             error: true,
             message: productData.error.message,
+        }
+    }
+});
+
+export const getNFTs = createAsyncThunk('nft/getNFTs', async (params, { getState }) => {
+    console.log("Entra a getNFTs frontend");
+    const nftsFetch = await fetch('http://localhost:7500/nft/getNFTs', {
+        headers: {
+            "Content-type": "application/json",
+        },
+    });
+    const nfts = await nftsFetch.json();
+    if (nftsFetch.status === 200) {
+        return nfts;
+    } else {
+        return {
+            error: true,
+            message: nfts.error.message,
         }
     }
 });
