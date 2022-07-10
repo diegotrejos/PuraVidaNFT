@@ -1,23 +1,15 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "Este es la documentacion del backend de PuraVidaNFT",
-    "version": "2.0.0",
     "title": "PuraVidaNFT",
-    "basePath": "/",
-    "host": "localhost:7500",
-    "schemes": [
-      "http",
-      "https"
-    ],
-    "contact": {
-      "email": "diego.trejosecheverria@ucr.ac.cr"
-    }
+    "description": "Este es la documentacion del backend de PuraVidaNFT",
+    "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "young-peak-69942.herokuapp.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/": {
@@ -321,5 +313,9 @@
         }
       }
     }
+  },
+  "version": "2.0.0",
+  "contact": {
+    "email": "diego.trejosecheverria@ucr.ac.cr"
   }
 }

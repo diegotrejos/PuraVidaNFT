@@ -7,7 +7,7 @@ info: {
     },
         version: "2.0.0", 
         basePath: '/',
-        host: 'mighty-garden-93796.herokuapp.com',
+        host: 'young-peak-69942.herokuapp.com',
          schemes: ["http","https"],
         contact: {
             "email": "diego.trejosecheverria@ucr.ac.cr"
