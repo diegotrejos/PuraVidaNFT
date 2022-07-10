@@ -1,15 +1,12 @@
-/*import { useState } from "react";
-import { useSelector } from "react-redux";*/
 import { useLocation } from "react-router-dom";
+import { BsFillSuitHeartFill, BsSuitHeart} from "react-icons/bs";
 import Navbar from "../../Component/Navbar/index.js";
 import React from "react";
 
 export default function NFTDetails() {
   const location = useLocation();
   const [showModal, setShowModal] = React.useState(false);
-  /*  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const theme = useSelector((state) => state.app.theme);*/
+  let liked = false;
 
   return (
     <div className="grid-rows-2">
@@ -28,6 +25,17 @@ export default function NFTDetails() {
               />
             </div>
           </div>
+          {liked ? (
+          <div className="flex justify-center">
+          <label className="m-3 text-lg">{location.state.likes}</label>
+          <BsFillSuitHeartFill size={35} className="m-2 cursor-pointer" onClick={() => liked=false}/>
+          </div>
+          ): (
+          <div className="flex justify-center">
+          <label className="m-3 text-lg">{location.state.likes}</label>
+          <BsSuitHeart size={35} className="m-2 cursor-pointer" onClick={() => liked=true}/>
+          </div>)
+          }
         </div>
 
         <div className="p-2 relative -right-1/3 ">

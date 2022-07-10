@@ -4,18 +4,21 @@ const users = [
     name: "Dayi",
     email: "karon.marin@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
+    photo: "https://ci0137.s3.amazonaws.com/NFT/users/burbuja.jpg"
   },
   {
     id: 1,
     name: "Jen",
     email: "jennifer.villalobos@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
+    photo: "https://ci0137.s3.amazonaws.com/NFT/users/murcielago.jpg"
   },
   {
     id: 2,
     name: "Diego",
     email: "diego.trejosecheverria@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
+    photo: "https://i.pinimg.com/474x/41/5a/56/415a569191ea6a5cea419d5f6f4be5ff.jpg"
   },
 ];
 

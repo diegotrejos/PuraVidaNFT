@@ -60,7 +60,7 @@ export default function Navbar(props) {
                           <img
                             className={`${"w-20"} ${"h-20"} rounded-full overflow-hidden border-2 dark:border-white border-gray-900`}
                             alt="Imagen de Usuario"
-                            src="https://i.pinimg.com/736x/a6/5e/ba/a65ebae219c97f8624f32140e80889a9.jpg"
+                            src={user.photo}
                           />
                         </button>
                         <nav
