@@ -11,6 +11,7 @@ const reducers = combineReducers({
   user: userSlice,
   cart: cartSlice,
   nft: nftSlice,
+  product: nftSlice,
 });
 
 const rootPersistConfig = {

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { patchEditAccount } from "../../Slices/userSlice";
 import Navbar from "../../Component/Navbar/index.js";
 
-export default function EditAccount() {
+function EditAccount() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
   const [productPicture, setProductPicture] = useState(null);
@@ -108,3 +108,4 @@ export default function EditAccount() {
     </div>
   );
 }
+export default EditAccount;

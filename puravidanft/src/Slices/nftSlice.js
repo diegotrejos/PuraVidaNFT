@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const nftSlice = createSlice({
-    name: 'nft',
+const productSlice = createSlice({
+    name: 'product',
     initialState: {
         success: false,
         product: null,
@@ -16,7 +16,7 @@ const nftSlice = createSlice({
     },
     extraReducers(builder) {
         builder
-            .addCase(createNFT.fulfilled, (state, action) => {
+            .addCase(createProduct.fulfilled, (state, action) => {
                 if (action.payload.error) {
                     state.success = false;
                     state.product = null;
@@ -27,7 +27,7 @@ const nftSlice = createSlice({
                     state.errorMessage = null;
                 }
             })
-            .addCase(createNFT.rejected, (state) => {
+            .addCase(createProduct.rejected, (state) => {
                 state.success = false;
                 state.product = null;
                 state.errorMessage = "Ocurrió un error al crear el producto.";
@@ -35,37 +35,34 @@ const nftSlice = createSlice({
     }
 });
 
-export const { cleanState } = nftSlice.actions;
+export const { cleanState } = productSlice.actions;
 
-
-export const createNFT = createAsyncThunk('nft/createNFT', async ({ nft, nftPicture }) => {
-    console.log("NFT: " + nft.name + nft.price + nft.author + nft.category + nftPicture );
+export const createProduct = createAsyncThunk('products/createProduct', async ({ product, productPicture }) => {
     const formData = new FormData();
-    formData.append('file', nftPicture);
+    formData.append('file', productPicture);
     const uploadFileFetch = await fetch('http://localhost:7500/upload', {
         method: 'POST',
         body: formData,
     });
     const uploadFileData = await uploadFileFetch.json();
-    nft.picture = uploadFileData.url;
+    product.picture = uploadFileData.url;
     const createProductFetch = await fetch('http://localhost:7500/nft/uploadNFT', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(nft),
+        body: JSON.stringify(product),
     });
-    console.log("Se cae aqui");
-    const nftData = await createProductFetch.json();
+    console.log("Se cae en 56");
+    const productData = await createProductFetch.json();
     if (createProductFetch.status === 200) {
-        return nftData;
+        return productData;
     } else {
         return {
             error: true,
-            message: nftData.error.message,
+            message: productData.error.message,
         }
     }
 });
 
-
-export default nftSlice.reducer;
+export default productSlice.reducer;

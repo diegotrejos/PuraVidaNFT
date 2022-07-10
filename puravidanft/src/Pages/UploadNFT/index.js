@@ -2,20 +2,20 @@ import { useState } from "react";
 import {useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../Component/Navbar/index.js";
-import { createNFT  } from "../../Slices/nftSlice";
+import { createProduct  } from "../../Slices/nftSlice";
 import Select from 'react-select';
 
 
-
-export default function AploadNFT() {
+function UploadNFT() {
   const navigate = useNavigate();
   const dispatch = useDispatch(); 
   const [productPicture, setProductPicture] = useState(null);
   const [product, setProduct] = useState({
     name: "",
-    price: 0,
+    price: "",
     author: "",
     category: "",
+    picture: "",
   });
 
   const suppliers = [{label: "Fantasía", value : "Fantasía"}, {label: "Realismo",value : "Realismo"}, {label: "Ficción", value: "Ficción"}]
@@ -100,9 +100,9 @@ export default function AploadNFT() {
               onClick={() => {
                 console.log("Antes del dispach");
                 dispatch(
-                  createNFT({
+                  createProduct({
                     product,
-                    productPicture
+                    productPicture,
                   })
                 );
                 console.log(product);
@@ -121,8 +121,9 @@ export default function AploadNFT() {
                 Cancelar
               </button>
               </div>
+              </div>
         </div>
-      </div>
     </div>
   );
 }
+export default UploadNFT;

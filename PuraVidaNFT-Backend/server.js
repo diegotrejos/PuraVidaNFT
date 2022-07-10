@@ -33,7 +33,7 @@ const upload = multer({
     acl: "public-read",
     bucket: "ci0137",
     key: function (req, file, cb) {
-      cb(null, file.originalname);
+      cb(null, `NFT/nfts/${file.originalname}`);
     },
   }),
 });
