@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { patchEditAccount } from "../../Slices/userSlice";
 import Navbar from "../../Component/Navbar/index.js";
 
-export default function EditAccount() {
+function EditAccount() {
+  const theme = useSelector((state) => state.app.theme);
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
+  const [picture, setProductPicture] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const id = user.id;
@@ -27,7 +29,7 @@ export default function EditAccount() {
           <div className="mb-8">
             <input
               placeholder =  {user.name}
-              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md`}
+              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
               value={name}
               onChange={(evt) => {
                 setName(evt.target.value);
@@ -37,10 +39,10 @@ export default function EditAccount() {
           <div className="mb-4">
           <p>Email:</p>
           </div>
-          <div className="mb-8">
+          <div className="mb-8 ">
             <input
               placeholder={userEmail}
-              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md`}
+              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
               value={email}
               onChange={(evt) => {
                 setEmail(evt.target.value);
@@ -56,20 +58,25 @@ export default function EditAccount() {
             </button>
           </div>
         </div>
-        <div className="w-1/2 p-4">
-          <div className="mb-4 flex justify-center ">
-            <img
-              className={`${"w-80"} ${"h-80"}`}
-              alt="Imagen de Usuario"
-              src="https://i.pinimg.com/736x/a6/5e/ba/a65ebae219c97f8624f32140e80889a9.jpg"
+        <div className="w-1/2 p-8">
+        <div className=" text-black p-2 h-[700px] w-[600px] ">
+        <label htmlFor="productPhoto"></label>
+            <input
+              className="block h-[100px] w-[600px] mb-8 border rounded-md"
+              id="productPhoto"
+              onChange={(evt) => {
+                setProductPicture(evt.target.files[0]);
+              }}
+              type="file"
             />
-          </div>
-          <div className="mb-4 flex justify-center ">
-            <button className="h-[48px] w-[300px] rounded-md bg-gray-500 text-white">
-              Cambiar foto
-            </button>
-          </div>
+            {picture && (
+              <img
+                src={URL.createObjectURL(picture)}
+                alt="Product preview"
+              />
+            )}
         </div>
+      </div>
       </div>
       <div className="flex justify-center">
         <div className=" mb-4">
@@ -91,6 +98,7 @@ export default function EditAccount() {
                 id,
                 name,
                 email,
+                picture,
               })
             );
             console.log('Despues del dispach de editar usuario');
@@ -102,3 +110,4 @@ export default function EditAccount() {
     </div>
   );
 }
+export default EditAccount;

@@ -92,6 +92,17 @@ export const postRegister = createAsyncThunk('usuarios/postRegister', async (cre
 });
 
 export const patchEditAccount = createAsyncThunk('usuarios/patchEditAccount', async (credentials) => {
+  console.log("Entra al pacth:");
+  const formData = new FormData();
+  formData.append('file', credentials.picture);
+  const uploadFileFetch = await fetch('http://localhost:7500/upload', {
+      method: 'POST',
+      body: formData,
+  });
+  const uploadFileData = await uploadFileFetch.json();
+  credentials.picture = uploadFileData.url;
+  console.log("Imagen:");
+  console.log( credentials.picture );
   const editAccountFetch = await fetch('http://localhost:7500/user/editaccount', {
       method: 'PATCH',
       headers: {
@@ -101,6 +112,7 @@ export const patchEditAccount = createAsyncThunk('usuarios/patchEditAccount', as
           id: credentials.id,
           name: credentials.name,
           email: credentials.email,
+          picture: credentials.picture,
       }),
   });
   const userData = await editAccountFetch.json();

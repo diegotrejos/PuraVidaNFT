@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const nftSlice = createSlice({
-    name: 'NFT',
+const productSlice = createSlice({
+    name: 'product',
     initialState: {
         success: false,
         product: null,
@@ -35,33 +35,7 @@ const nftSlice = createSlice({
     }
 });
 
-export const { cleanState } = nftSlice.actions;
-
-export const  postAddNFT = createAsyncThunk('nft/createNFT', async ({ product }) => {
-    console.log("NFT: " + product.name + product.price + product.author + product.category);
-    const nftFetch = await fetch('http://localhost:7500/nft/uploadNFT', {
-        method: 'POST',
-        headers: {
-            "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-            name: product.name,
-            price: product.price,
-            author: product.author,
-            category: product.category
-        }),
-    });
-    const nftData = await nftFetch.json();
-    console.log("fetch status: " + nftFetch.status);
-    if (nftFetch.status === 200) {
-        return nftData;
-    } else {
-        return {
-            error: true,
-            message: nftData.error.message,
-        }
-    }
-  });
+export const { cleanState } = productSlice.actions;
 
 export const createProduct = createAsyncThunk('products/createProduct', async ({ product, productPicture }) => {
     const formData = new FormData();
@@ -72,13 +46,14 @@ export const createProduct = createAsyncThunk('products/createProduct', async ({
     });
     const uploadFileData = await uploadFileFetch.json();
     product.picture = uploadFileData.url;
-    const createProductFetch = await fetch('http://localhost:7500/products', {
+    const createProductFetch = await fetch('http://localhost:7500/nft/uploadNFT', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(product),
     });
+    console.log("Se cae en 56");
     const productData = await createProductFetch.json();
     if (createProductFetch.status === 200) {
         return productData;
@@ -90,5 +65,4 @@ export const createProduct = createAsyncThunk('products/createProduct', async ({
     }
 });
 
-
-export default nftSlice.reducer;
+export default productSlice.reducer;
