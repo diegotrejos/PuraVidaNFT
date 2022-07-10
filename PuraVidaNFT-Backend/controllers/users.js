@@ -31,6 +31,7 @@ exports.editUser = async (req, res) => {
       if(user.id === idUser){
         user.name = userPayload.name;
         user.email = userPayload.email;  
+        user.image = userPayload.productPicture;
     }
   }
     console.log(data.users);
