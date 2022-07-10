@@ -14,11 +14,10 @@
       "email": "diego.trejosecheverria@ucr.ac.cr"
     }
   },
+  "host": "localhost:3000",
   "basePath": "/",
-  "host": "localhost:7500",
   "schemes": [
-    "http",
-    "https"
+    "http"
   ],
   "paths": {
     "/": {
@@ -34,7 +33,10 @@
     },
     "/user/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Endpoint para devolver lista de usuarios",
         "parameters": [
           {
             "name": "authorization",
@@ -63,7 +65,7 @@
         "tags": [
           "Users"
         ],
-        "description": "",
+        "description": "Endpoint para crear un usuario",
         "parameters": [
           {
             "name": "body",
@@ -96,7 +98,10 @@
     },
     "/user/login": {
       "post": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Endpoint para loggear un usuario",
         "parameters": [
           {
             "name": "body",
@@ -132,7 +137,10 @@
     },
     "/user/recoverPassword": {
       "post": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Endpoint para el proceso de recuperacion de contraseña",
         "parameters": [
           {
             "name": "body",
@@ -162,7 +170,10 @@
     },
     "/user/resetPassword": {
       "patch": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Endpoint para el proceso de recuperacion de contraseña",
         "parameters": [
           {
             "name": "body",
@@ -198,7 +209,10 @@
     },
     "/user/changePassword": {
       "patch": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Endpoint para el proceso de cambio de contraseña",
         "parameters": [
           {
             "name": "body",
@@ -234,7 +248,10 @@
     },
     "/user/editaccount": {
       "patch": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "description": "Endpoint para editar un usuario",
         "parameters": [
           {
             "name": "body",
@@ -267,7 +284,10 @@
     },
     "/nft/uploadNFT": {
       "post": {
-        "description": "",
+        "tags": [
+          "NFT"
+        ],
+        "description": "Endpoint crear NFTs",
         "parameters": [
           {
             "name": "body",
