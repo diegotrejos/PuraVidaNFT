@@ -6,6 +6,8 @@ const data = require("../utils/data");
 const saltRounds = 10;
 
 exports.createUser = async (req, res) => {
+   /* 	#swagger.tags = ['Users']
+      #swagger.description = 'Endpoint para crear un usuario' */
   try {
     const userPayload = req.body; 
     let lenght = data.users.length;
@@ -26,6 +28,8 @@ exports.createUser = async (req, res) => {
 };
 
 exports.editUser = async (req, res) => {
+ /* 	#swagger.tags = ['Users']
+      #swagger.description = 'Endpoint para editar un usuario' */
   try {
     const userPayload = req.body; 
     const users = data.users;
@@ -58,6 +62,8 @@ exports.editUser = async (req, res) => {
 
 
 exports.loginUser = async (req, res) => {
+ /* 	#swagger.tags = ['Users']
+      #swagger.description = 'Endpoint para loggear un usuario' */
   try {
     const userPayload = req.body;
     const users = data.users;
@@ -108,6 +114,8 @@ exports.loginUser = async (req, res) => {
 };
 
 exports.recoverPassword = async (req, res) => {
+   /* 	#swagger.tags = ['Users']
+      #swagger.description = 'Endpoint para el proceso de recuperacion de contraseña' */
   try {
     const userPayload = req.body;
     const users = data.users;
@@ -147,6 +155,8 @@ exports.recoverPassword = async (req, res) => {
 };
 
 exports.resetPassword = async (req, res) => {
+     /* 	#swagger.tags = ['Users']
+      #swagger.description = 'Endpoint para el proceso de recuperacion de contraseña' */
   try {
     const userPayload = req.body;
     let user;
@@ -201,6 +211,8 @@ exports.resetPassword = async (req, res) => {
 };
 
 exports.changePassword = async (req, res) => {
+     /* 	#swagger.tags = ['Users']
+      #swagger.description = 'Endpoint para el proceso de cambio de contraseña' */
   try {
     const userPayload = req.body;
     let user;
@@ -247,10 +259,13 @@ exports.changePassword = async (req, res) => {
 };
 
 exports.listUsers = async (req, res) => {
+     /* 	#swagger.tags = ['Users']
+      #swagger.description = 'Endpoint para devolver lista de usuarios' */
   try {
     const query = getQuery();
     const querySelect = "SELECT id, name, email FROM puravidanft.User";
     const users = await query(querySelect);
+    Swagger.validateModel('Users', res);
     res.json(users);
   } catch (error) {
     res.status(500).json({

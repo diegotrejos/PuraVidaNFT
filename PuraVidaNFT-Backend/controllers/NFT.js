@@ -1,11 +1,11 @@
 const data = require("../utils/data");
 
 exports.createNFT = async (req, res) => {
+  /* 	#swagger.tags = ['NFT']
+      #swagger.description = 'Endpoint crear NFTs' */
   try {
-    console.log("Entra a createNFT backend");
     const nftPayload = req.body;
     let lenght = data.NFTdata.length;
-    console.log("Antes de entrar al push");
     data.NFTdata.push({
       id: lenght,
       name: nftPayload.name,
@@ -16,10 +16,8 @@ exports.createNFT = async (req, res) => {
       image: nftPayload.picture,
     });
 
-    console.log("Despues del push");
     console.log(data.NFTdata);
     const newNFT = data.NFTdata[lenght];
-    console.log("newNFT: " + newNFT.name);
 
     res.json({
       ...newNFT
