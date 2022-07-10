@@ -57,7 +57,7 @@ const NFTdata = [
       id: "1",
       name: "Magic Kingdom",
       image:
-        "https://pbs.twimg.com/media/EcxlgfpX0AAFUvh?format=jpg&name=4096x4096",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft1.jpg",
       price: "7.26",
       author: "Beeple",
       likes: 1040,
@@ -67,7 +67,7 @@ const NFTdata = [
       id: "2",
       name: "Setting Sun",
       image:
-        "https://preview.redd.it/f9ejq7jdnns31.png?auto=webp&s=4d3425dac5854dc6d461d7497a5cfd20ae49e61f",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft2.jpg",
       price: "7.26",
       author: "Beeple",
       likes: 13200,
@@ -78,7 +78,7 @@ const NFTdata = [
       name: "Electric City",
       author: "Beeple",
       image:
-        "https://cdnb.artstation.com/p/assets/images/images/015/763/867/4k/beeple-01-24-19.jpg?1549548527",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft3.jpg",
       price: "7.26",
       likes: 50,
       category: "CyberPunk",
@@ -89,7 +89,7 @@ const NFTdata = [
       name: "Everydays — The First 5000 Days",
       author: "Beeple",
       image:
-        "https://static01.nyt.com/images/2021/03/12/arts/12nft-buyer-1/merlin_184937952_4f3bc7e4-bcd1-4e3a-aa99-aeb528736b06-mobileMasterAt3x.jpg",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft4.png",
       price: "7.26",
       likes: 441,
       category: "Ficcion",
@@ -98,7 +98,7 @@ const NFTdata = [
       id: "5",
       name: "Cyberpunk",
       image:
-        "https://lh3.googleusercontent.com/6Ad2t4fnwNEMcBJViWY6gatlVOpZ8nVlxK4f_KeuDbK5qx5euZiXHN4e51nZK_oZI9vXYF8BO-hMurj9FLYCJxCDZsmoGgh_TlaabSk=w600",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft5.jpg",
       price: "0.02",
       author: "Artyx_08",
       likes: 182,
@@ -108,7 +108,7 @@ const NFTdata = [
       id: "6",
       name: "Bored Ape #1837",
       image:
-        "https://lh3.googleusercontent.com/_Iw2NoosTEV9Yd9CrDa-z8dlrkm199DpKaczdMO7G8K71AfXyfKPWaQ-5qrIzfbapcPHRMCET8lHwNR7uh7l1DP4-t0lMUZjgUWG=w1400-k",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft6.png",
       price: "7.26",
       likes: 871,
       category: "Fantasía",
@@ -117,7 +117,7 @@ const NFTdata = [
       id: "7",
       name: "Bull #64",
       image:
-        "https://img.seadn.io/files/a0d67e53ceb57688ff8dfc01a8affc03.png?fit=max&w=600",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft7.png",
       price: "7.26",
       likes: 6414,
       category: "Fantasía",
@@ -127,7 +127,7 @@ const NFTdata = [
       id: "8",
       name: "Solange",
       image:
-        "https://openseauserdata.com/files/ce3b272f88ce2363e91525896aa03883.svg",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft8.png",
       price: "2.4",
       author: "CyberBrokers",
       likes: 7431,
@@ -137,7 +137,7 @@ const NFTdata = [
       id: "9",
       name: "Delysid Kiddos #571",
       image:
-        "https://lh3.googleusercontent.com/DGlhA4NW3LZ8NSqwoe6BejtAGWjiYSdKDlD0ptuKEYUCxuYEAaSVTaEXHMhj1pHfuQtXbE2uh17A1Fql70TnZZ59GXs5E5p6bxQPzy8=w600",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft9.png",
       price: "7.26",
       author: "Delysid Kiddos",
       likes: 132,
@@ -147,7 +147,7 @@ const NFTdata = [
       id: "10",
       name: "Azuki #654",
       image:
-        "https://img.seadn.io/files/164010526b03cfc1a8c37f80f153e8f4.png?fit=max&w=600",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft10.png",
       price: "11",
       author: "Azuki",
       likes: 87200,
@@ -157,7 +157,7 @@ const NFTdata = [
       id: "11",
       name: "SNEAKERHEADS #927",
       image:
-        "https://img.seadn.io/files/fec889de404aee81855d93ab1b6fc760.png?fit=max&w=600",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft11.jpg",
       price: "0.278",
       author: "SNEAKER HEADS Official",
       likes: 6520,
@@ -167,7 +167,7 @@ const NFTdata = [
       id: "12",
       name: "Bull #3152",
       image:
-        "https://img.seadn.io/files/956071a64abf4c7a08e14c1a6c9e6069.png?fit=max",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/carro.webp",
       price: "7.26",
       likes: 144,
       category: "Fantasía",
@@ -177,7 +177,7 @@ const NFTdata = [
       id: "13",
       name: "#81750",
       image:
-        "https://img.seadn.io/files/4a0101213ec5f0d9a9196a7e3a771411.jpg?fit=max&w=600",
+        "https://ci0137.s3.amazonaws.com/NFT/nfts/pruebaPerfil.webp",
       price: "2.4",
       author: "Otherdeed for Otherside",
       likes: 985,
