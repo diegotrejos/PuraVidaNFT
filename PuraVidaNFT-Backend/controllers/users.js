@@ -38,7 +38,7 @@ exports.editUser = async (req, res) => {
       if(user.id === idUser){
         user.name = userPayload.name;
         user.email = userPayload.email;  
-        user.image = userPayload.productPicture;
+        user.photo = userPayload.picture;
         updatedUser = user;
     }
   }
@@ -46,6 +46,8 @@ exports.editUser = async (req, res) => {
     res.json({
       ...updatedUser,
     });
+
+    console.log(users);
 
   } catch (error) {
     res.status(500).json({

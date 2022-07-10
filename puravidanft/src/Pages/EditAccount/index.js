@@ -5,9 +5,10 @@ import { patchEditAccount } from "../../Slices/userSlice";
 import Navbar from "../../Component/Navbar/index.js";
 
 function EditAccount() {
+  const theme = useSelector((state) => state.app.theme);
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
-  const [productPicture, setProductPicture] = useState(null);
+  const [picture, setProductPicture] = useState(null);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const id = user.id;
@@ -28,7 +29,7 @@ function EditAccount() {
           <div className="mb-8">
             <input
               placeholder =  {user.name}
-              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md`}
+              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
               value={name}
               onChange={(evt) => {
                 setName(evt.target.value);
@@ -38,10 +39,10 @@ function EditAccount() {
           <div className="mb-4">
           <p>Email:</p>
           </div>
-          <div className="mb-8">
+          <div className="mb-8 ">
             <input
               placeholder={userEmail}
-              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md`}
+              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
               value={email}
               onChange={(evt) => {
                 setEmail(evt.target.value);
@@ -57,23 +58,25 @@ function EditAccount() {
             </button>
           </div>
         </div>
-        <div className="w-1/2 p-4">
+        <div className="w-1/2 p-8">
+        <div className="mb-4">
         <label htmlFor="productPhoto"></label>
             <input
-              className="block w-full mb-4 border rounded-md"
+              className="block h-[400px] w-[600px] mb-8 border rounded-md"
               id="productPhoto"
               onChange={(evt) => {
                 setProductPicture(evt.target.files[0]);
               }}
               type="file"
             />
-            {productPicture && (
+            {picture && (
               <img
-                src={URL.createObjectURL(productPicture)}
+                src={URL.createObjectURL(picture)}
                 alt="Product preview"
               />
             )}
         </div>
+      </div>
       </div>
       <div className="flex justify-center">
         <div className=" mb-4">
@@ -95,10 +98,9 @@ function EditAccount() {
                 id,
                 name,
                 email,
-                productPicture,
+                picture,
               })
             );
-            console.log(productPicture);
             console.log('Despues del dispach de editar usuario');
           }}>
             Confirmar Cambios
