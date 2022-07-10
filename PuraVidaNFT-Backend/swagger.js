@@ -7,7 +7,7 @@ info: {
     },
         version: "2.0.0", 
         basePath: '/',
-        host: 'young-peak-69942.herokuapp.com',
+        host: 'pacific-wave-01630.herokuapp.com',
          schemes: ["http","https"],
         contact: {
             "email": "diego.trejosecheverria@ucr.ac.cr"

@@ -5,7 +5,7 @@
     "description": "Este es la documentacion del backend de PuraVidaNFT",
     "version": "1.0.0"
   },
-  "host": "young-peak-69942.herokuapp.com",
+  "host": "pacific-wave-01630.herokuapp.com",
   "basePath": "/",
   "schemes": [
     "http",
