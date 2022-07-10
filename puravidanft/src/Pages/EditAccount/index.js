@@ -11,7 +11,7 @@ export default function EditAccount() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const id = user.id;
-  const theme = useSelector((state) => state.app.theme);
+  const userEmail = user.email;
  
   const dispatch = useDispatch(); 
   return (
@@ -28,7 +28,7 @@ export default function EditAccount() {
           <div className="mb-8">
             <input
               placeholder =  {user.name}
-              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
+              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md`}
               value={name}
               onChange={(evt) => {
                 setName(evt.target.value);
@@ -40,8 +40,8 @@ export default function EditAccount() {
           </div>
           <div className="mb-8">
             <input
-              placeholder={user.email}
-              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md ${theme.inputBg} ${theme.inputText}`}
+              placeholder={userEmail}
+              className={`placeholder:text-black pl-4 h-[48px] w-[400px] rounded-md`}
               value={email}
               onChange={(evt) => {
                 setEmail(evt.target.value);
