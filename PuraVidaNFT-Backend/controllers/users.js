@@ -165,6 +165,7 @@ exports.listUsers = async (req, res) => {
     const query = getQuery();
     const querySelect = "SELECT id, name, email FROM puravidanft.User";
     const users = await query(querySelect);
+    Swagger.validateModel('Users', res);
     res.json(users);
   } catch (error) {
     res.status(500).json({
