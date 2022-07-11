@@ -96,22 +96,11 @@ exports.getNFTs = async (req, res) => {
 
 exports.buyNFT = async (req, res) => {
   try {
-    console.log("Entra a buyNFT");
     const userPayload = req.body;
-    const wallet = data.wallet;
-
-    console.log("Antes de buscar");
-    const found = wallet.find((obj) => {
-      return obj.idUser === userPayload.idUser;
-    });
-
-    if (!found) {
-      res.status(401).send("Credenciales invalidos.");
-      return;
-    }
+    const users = data.users;
 
     // Check balance
-    if (userPayload.price > found.balance) {
+    if (userPayload.price > userPayload.balance) {
       res.status(400).send("Saldo de la billetera insuficiente.");
       return;
     }
@@ -123,12 +112,23 @@ exports.buyNFT = async (req, res) => {
       }
     }
 
-    console.log("Antes de devolver respuesta");
+    // Decrement wallet balace
+    let updatedUser;
+    const newBalance = userPayload.balance - userPayload.price;
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].id == userPayload.idUser) {
+        users[i].balance = newBalance;
+        updatedUser = users[i];
+      }
+    }
 
-    res.status(200).send();
+    res.json({
+      ...updatedUser,
+    });
+
   } catch (error) {
     res.status(500).json({
-      message: "Error al comprar el NFT.",
+      message: "Error al comprar el NFT: " + error,
     });
   }
 };

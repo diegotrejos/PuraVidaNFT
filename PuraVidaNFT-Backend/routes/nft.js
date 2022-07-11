@@ -8,7 +8,7 @@ router.route("/checkLiked").get( checkLiked );
 
 router.route("/getNFTs").get( getNFTs );
 
-router.route("/buyNFT").patch( buyNFT );
+router.route("/buyNFT").post( buyNFT );
 
 router.route("/getMyNFTs").get( getMyNFTs );
 

@@ -18,7 +18,8 @@ exports.createUser = async (req, res) => {
       name: userPayload.name,
       email: userPayload.email,
       password: encryptedPassword,
-      photo: "https://ci0137.s3.amazonaws.com/NFT/users/incognito.png"
+      photo: "https://ci0137.s3.amazonaws.com/NFT/users/incognito.png",
+      balance: 20
     });
     
     console.log(data.users);

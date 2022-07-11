@@ -4,21 +4,24 @@ const users = [
     name: "Dayi",
     email: "karon.marin@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
-    photo: "https://ci0137.s3.amazonaws.com/NFT/users/burbuja.jpg"
+    photo: "https://ci0137.s3.amazonaws.com/NFT/users/burbuja.jpg",
+    balance: 35000
   },
   {
     id: 1,
     name: "Jen",
     email: "jennifer.villalobos@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
-    photo: "https://ci0137.s3.amazonaws.com/NFT/users/murcielago.jpg"
+    photo: "https://ci0137.s3.amazonaws.com/NFT/users/murcielago.jpg",
+    balance: 5000
   },
   {
     id: 2,
     name: "Diego",
     email: "diego.trejosecheverria@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
-    photo: "https://i.pinimg.com/474x/41/5a/56/415a569191ea6a5cea419d5f6f4be5ff.jpg"
+    photo: "https://i.pinimg.com/474x/41/5a/56/415a569191ea6a5cea419d5f6f4be5ff.jpg",
+    balance: 12
   },
 ];
 
@@ -215,7 +218,7 @@ const wallet = [
   {
     idWallet: 0,
     idUser: 0,
-    balance: 12,
+    balance: 35000,
   },
   {
     idWallet: 1,
@@ -225,7 +228,7 @@ const wallet = [
   {
     idWallet: 2,
     idUser: 2,
-    balance: 35000,
+    balance: 12,
   },
 ];
 

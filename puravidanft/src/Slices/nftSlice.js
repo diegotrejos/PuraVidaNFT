@@ -66,7 +66,6 @@ export const createProduct = createAsyncThunk('products/createProduct', async ({
         },
         body: JSON.stringify(product),
     });
-    console.log("Se cae en 56");
     const productData = await createProductFetch.json();
     if (createProductFetch.status === 200) {
         return productData;
@@ -79,7 +78,6 @@ export const createProduct = createAsyncThunk('products/createProduct', async ({
 });
 
 export const getNFTs = createAsyncThunk('nft/getNFTs', async (params, { getState }) => {
-    console.log("Entra a getNFTs frontend");
     const nftsFetch = await fetch('http://localhost:7500/nft/getNFTs', {
         headers: {
             "Content-type": "application/json",
@@ -95,6 +93,5 @@ export const getNFTs = createAsyncThunk('nft/getNFTs', async (params, { getState
         }
     }
 });
-
 
 export default productSlice.reducer;
