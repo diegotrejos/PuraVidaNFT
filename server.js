@@ -59,8 +59,6 @@ server.post("/upload", upload.single("file"), function (req, res) {
 server.listen(process.env.PORT || 7500);
 console.log("Sí funciona");
 console.log(
-  `The server is running at http://localhost:${process.env.PORT || 7500} 
-You can navigate the documentation at http://localhost:${
-    process.env.PORT || 7500
-  }/docs`
+  `The server is running at puravidanft00.herokuapp.com 
+You can navigate the documentation at puravidanft00.herokuapp.com/docs`
 );

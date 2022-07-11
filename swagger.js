@@ -7,14 +7,11 @@ info: {
     },
         version: "2.0.0", 
         basePath: '/',
-        host: 'pacific-wave-01630.herokuapp.com',
+        host: 'puravidanft00.herokuapp.com',
          schemes: ["http","https"],
         contact: {
-            "email": "diego.trejosecheverria@ucr.ac.cr"
+            email: ["diego.trejosecheverria@ucr.ac.cr","jennifer.villalobos@ucr.ac.cr","karon.marin@ucr.ac.cr"]
         }
-
-    
-
 };
 
 

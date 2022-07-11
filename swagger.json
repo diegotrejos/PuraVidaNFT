@@ -5,7 +5,7 @@
     "description": "Este es la documentacion del backend de PuraVidaNFT",
     "version": "1.0.0"
   },
-  "host": "pacific-wave-01630.herokuapp.com",
+  "host": "puravidanft00.herokuapp.com",
   "basePath": "/",
   "schemes": [
     "http",
@@ -14,6 +14,17 @@
   "paths": {
     "/": {
       "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/upload": {
+      "post": {
         "description": "",
         "parameters": [],
         "responses": {
@@ -259,6 +270,9 @@
                 },
                 "email": {
                   "example": "any"
+                },
+                "picture": {
+                  "example": "any"
                 }
               }
             }
@@ -298,6 +312,9 @@
                 },
                 "category": {
                   "example": "any"
+                },
+                "picture": {
+                  "example": "any"
                 }
               }
             }
@@ -312,10 +329,98 @@
           }
         }
       }
+    },
+    "/nft/checkLiked": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/nft/getNFTs": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/nft/buyNFT": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "price": {
+                  "example": "any"
+                },
+                "balance": {
+                  "example": "any"
+                },
+                "idUser": {
+                  "example": "any"
+                },
+                "idNFT": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/nft/getMyNFTs": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   },
   "version": "2.0.0",
   "contact": {
-    "email": "diego.trejosecheverria@ucr.ac.cr"
+    "email": [
+      "diego.trejosecheverria@ucr.ac.cr",
+      "jennifer.villalobos@ucr.ac.cr",
+      "karon.marin@ucr.ac.cr"
+    ]
   }
 }
