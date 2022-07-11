@@ -4,18 +4,24 @@ const users = [
     name: "Dayi",
     email: "karon.marin@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
+    photo: "https://ci0137.s3.amazonaws.com/NFT/users/burbuja.jpg",
+    balance: 35000
   },
   {
     id: 1,
     name: "Jen",
     email: "jennifer.villalobos@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
+    photo: "https://ci0137.s3.amazonaws.com/NFT/users/murcielago.jpg",
+    balance: 5000
   },
   {
     id: 2,
     name: "Diego",
     email: "diego.trejosecheverria@ucr.ac.cr",
     password: "$2b$10$JF6TFVSNRwHsbxj0PpEYIOKl73cvCmw0ce090DEXqIatqzAt/NcTO",
+    photo: "https://i.pinimg.com/474x/41/5a/56/415a569191ea6a5cea419d5f6f4be5ff.jpg",
+    balance: 12
   },
 ];
 
@@ -52,9 +58,9 @@ const userRoles = [
 const NFTdata = [
     {
       id: "1",
-      name: "Magic Kingdom",
+      name: "Race",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft1.jpg",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/carro.webp",
       price: "7.26",
       author: "Beeple",
       likes: 1040,
@@ -64,7 +70,7 @@ const NFTdata = [
       id: "2",
       name: "Setting Sun",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft2.jpg",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/carro.webp",
       price: "7.26",
       author: "Beeple",
       likes: 13200,
@@ -75,7 +81,7 @@ const NFTdata = [
       name: "Electric City",
       author: "Beeple",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft3.jpg",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft2.jpg",
       price: "7.26",
       likes: 50,
       category: "CyberPunk",
@@ -86,7 +92,7 @@ const NFTdata = [
       name: "Everydays — The First 5000 Days",
       author: "Beeple",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft4.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft3.jpg",
       price: "7.26",
       likes: 441,
       category: "Ficcion",
@@ -95,7 +101,7 @@ const NFTdata = [
       id: "5",
       name: "Cyberpunk",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft5.jpg",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft9.png",
       price: "0.02",
       author: "Artyx_08",
       likes: 182,
@@ -105,7 +111,7 @@ const NFTdata = [
       id: "6",
       name: "Bored Ape #1837",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft6.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft5.jpg",
       price: "7.26",
       likes: 871,
       category: "Fantasía",
@@ -114,7 +120,7 @@ const NFTdata = [
       id: "7",
       name: "Bull #64",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft7.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft10.png",
       price: "7.26",
       likes: 6414,
       category: "Fantasía",
@@ -124,7 +130,7 @@ const NFTdata = [
       id: "8",
       name: "Solange",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft8.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft4.png",
       price: "2.4",
       author: "CyberBrokers",
       likes: 7431,
@@ -134,7 +140,7 @@ const NFTdata = [
       id: "9",
       name: "Delysid Kiddos #571",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft9.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft7.png",
       price: "7.26",
       author: "Delysid Kiddos",
       likes: 132,
@@ -144,7 +150,7 @@ const NFTdata = [
       id: "10",
       name: "Azuki #654",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft10.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft8.png",
       price: "11",
       author: "Azuki",
       likes: 87200,
@@ -164,7 +170,7 @@ const NFTdata = [
       id: "12",
       name: "Bull #3152",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/carro.webp",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft6.png",
       price: "7.26",
       likes: 144,
       category: "Fantasía",
@@ -182,6 +188,21 @@ const NFTdata = [
     },
   ];
 
+const NFTlikes = [
+    {
+      idNFT: 2,
+      likedBy: [0, 1, 2]
+    },
+    {
+      idNFT: 3,
+      likedBy: [0, 2]
+    },
+    {
+      idNFT: 4,
+      likedBy: [0]
+    },
+  ];
+
 const recoveryCodes = [
   {
     idUser: 0,
@@ -193,10 +214,46 @@ const recoveryCodes = [
   },
 ];
 
+const wallet = [
+  {
+    idWallet: 0,
+    idUser: 0,
+    balance: 35000,
+  },
+  {
+    idWallet: 1,
+    idUser: 1,
+    balance: 5000,
+  },
+  {
+    idWallet: 2,
+    idUser: 2,
+    balance: 12,
+  },
+];
+
+const myNFTs = [
+  {
+    idUser: 0,
+    NFTs: [2,3],
+  },
+  {
+    idUser: 1,
+    NFTs: [5,7,9],
+  },
+  {
+    idUser: 2,
+    NFTs: [8],
+  },
+];
+
 module.exports = {
     users,
     roles,
     userRoles,
     NFTdata,
-    recoveryCodes
+    NFTlikes,
+    recoveryCodes,
+    wallet,
+    myNFTs,
 }

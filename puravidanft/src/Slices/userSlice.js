@@ -58,6 +58,15 @@ const userSlice = createSlice({
               state.errorMessage = "";
             }
           })
+          .addCase(buyNFT.fulfilled, (state, action) => {
+            if (action.payload.error){
+              state.errorMessage = action.payload.message
+            } else {
+              state.isLoggedIn = true;
+              state.user = action.payload;
+              state.errorMessage = "";
+            }
+          })
   },
 });
 
@@ -92,7 +101,6 @@ export const postRegister = createAsyncThunk('usuarios/postRegister', async (cre
 });
 
 export const patchEditAccount = createAsyncThunk('usuarios/patchEditAccount', async (credentials) => {
-  console.log("Entra al pacth:");
   const formData = new FormData();
   formData.append('file', credentials.picture);
   const uploadFileFetch = await fetch('http://localhost:7500/upload', {
@@ -101,8 +109,6 @@ export const patchEditAccount = createAsyncThunk('usuarios/patchEditAccount', as
   });
   const uploadFileData = await uploadFileFetch.json();
   credentials.picture = uploadFileData.url;
-  console.log("Imagen:");
-  console.log( credentials.picture );
   const editAccountFetch = await fetch('http://localhost:7500/user/editaccount', {
       method: 'PATCH',
       headers: {
@@ -207,6 +213,30 @@ export const updatePassword = createAsyncThunk('usuarios/updatePassword', async 
   });
   const userData = await updateFetch.json();
   if (updateFetch.status === 200) {
+      return userData;
+  } else {
+      return {
+          error: true,
+          message: userData.error.message,
+      }
+  }
+});
+
+export const buyNFT = createAsyncThunk('nft/buyNFT', async (credentials) => {
+  const walletFetch = await fetch('http://localhost:7500/nft/buyNFT', {
+      method: 'POST',
+      headers: {
+          "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+          idUser: credentials.idUser,
+          idNFT: credentials.idNFT,
+          price: credentials.price,
+          balance: credentials.balance
+      }),
+  });
+  const userData = await walletFetch.json();
+  if (walletFetch.status === 200) {
       return userData;
   } else {
       return {

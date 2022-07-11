@@ -13,7 +13,14 @@ exports.createUser = async (req, res) => {
     let lenght = data.users.length;
 
     encryptedPassword = await bcrypt.hash(userPayload.password, saltRounds);
-    data.users.push({id: lenght, name: userPayload.name, email: userPayload.email, password: encryptedPassword});
+    data.users.push({
+      id: lenght,
+      name: userPayload.name,
+      email: userPayload.email,
+      password: encryptedPassword,
+      photo: "https://ci0137.s3.amazonaws.com/NFT/users/incognito.png",
+      balance: 20
+    });
     
     console.log(data.users);
     

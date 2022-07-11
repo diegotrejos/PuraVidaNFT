@@ -1,15 +1,21 @@
-/*import { useState } from "react";
-import { useSelector } from "react-redux";*/
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { BsFillSuitHeartFill, BsSuitHeart} from "react-icons/bs";
 import Navbar from "../../Component/Navbar/index.js";
 import React from "react";
+import { buyNFT } from "../../Slices/userSlice";
 
 export default function NFTDetails() {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
   const [showModal, setShowModal] = React.useState(false);
-  /*  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const theme = useSelector((state) => state.app.theme);*/
+  
+  let liked = false;
+  const balance = user.balance;
+  const idUser = user.id;
+  const price = location.state.price;
+  const idNFT = location.state.id;
 
   return (
     <div className="grid-rows-2">
@@ -28,6 +34,17 @@ export default function NFTDetails() {
               />
             </div>
           </div>
+          {liked ? (
+          <div className="flex justify-center">
+          <label className="m-3 text-lg">{location.state.likes}</label>
+          <BsFillSuitHeartFill size={35} className="m-2 cursor-pointer" onClick={() => liked=false}/>
+          </div>
+          ): (
+          <div className="flex justify-center">
+          <label className="m-3 text-lg">{location.state.likes}</label>
+          <BsSuitHeart size={35} className="m-2 cursor-pointer" onClick={() => liked=true}/>
+          </div>)
+          }
         </div>
 
         <div className="p-2 relative -right-1/3 ">
@@ -66,7 +83,7 @@ export default function NFTDetails() {
                     Precio del NFT: {location.state.price}
                   </p>
                   <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                    Saldo de la billetera: $6000
+                    Saldo de la billetera: {balance}ETH
                   </p>
                 </div>
                 {/*footer*/}
@@ -74,7 +91,17 @@ export default function NFTDetails() {
                   <button
                     className=" h-[48px] w-[150px] rounded-md bg-purple-500 text-white  background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => {
+                      dispatch(
+                        buyNFT({
+                          idUser,
+                          idNFT,
+                          price,
+                          balance
+                        })
+                      );
+                      setShowModal(false)
+                    }}
                   >
                     Comprar 
                   </button>
