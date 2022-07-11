@@ -81,7 +81,6 @@ const Carousel = (props) => {
           <button
             onClick={movePrev}
             className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-            disabled={isDisabled("prev")}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +101,6 @@ const Carousel = (props) => {
           <button
             onClick={moveNext}
             className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-            disabled={isDisabled("next")}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -194,52 +192,4 @@ const Carousel = (props) => {
   );
 };
 
-/**
- * 
-          {data.resources.map((resource, index) => {
-            return (
-
-
-              <div
-                key={index}
-                className="carousel-item text-center relative w-64 h-64 snap-start"
-              >
-                <a
-                  onClick={() => navigate("/nftdetails")}
-                  className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0"
-                  style={{ backgroundImage: `url(${resource.image || ""})` }}
-                >
-                  <img
-                    src={resource.image || ""}
-                    alt={resource.name}
-                    className="w-full aspect-square hidden "
-                  />
-                </a>
-                <a
-                  onClick={() => navigate("/nftdetails")}
-                  className="h-full w-full aspect-square block absolute top-0 left-0 transition-opacity duration-300 opacity-0 hover:opacity-100 bg-blue-800/75 z-10"
-                >
-                  <h3 className="text-white py-6 px-3 mx-auto text-xl">
-                    {resource.name}
-                  </h3>
-                  <h3 className="text-white py-6 px-3 mx-auto text-xl">
-                    {resource.price}ETH
-                  </h3>
-                </a>
-
-      </div>
-      <div className="p-4">
-        <p className="float-left">{product.author}</p>
-        <p className= {`float-right ${theme.priceTag}`}>${product.price}</p>
-      </div>
-      <div className="p-4">
-      <p className="float-left">{product.name}</p>
-        <p className="float-right cursor-pointer text">❤{product.likes}</p>
-      </div>
-      
-
-              </div>
-            );
-          })}
- */
 export default Carousel;
