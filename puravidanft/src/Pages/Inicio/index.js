@@ -8,7 +8,7 @@ function Inicio() {
     <div>
       <Navbar />
 
-      <Carousel Title ="Trending" size="64" mode="2"></Carousel>
+      <Carousel Title ="Trending" mode="2"></Carousel>
 
       <Footer />
     </div>

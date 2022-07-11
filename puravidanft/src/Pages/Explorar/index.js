@@ -8,9 +8,9 @@ function Explorar() {
     <div>
       <Navbar />
       <div className="">
-        <Carousel Title="Fantasía" filter="Fantasía" size="64" mode = "1" ></Carousel>
-        <Carousel Title="Ficcion" filter="Ficcion" size="64"  mode = "1"></Carousel>
-        <Carousel Title="CyberPunk" filter="CyberPunk" size="64"  mode = "1"></Carousel>
+        <Carousel Title="Fantasía" filter="Fantasía"  mode = "1" ></Carousel>
+        <Carousel Title="Ficcion" filter="Ficcion"   mode = "1"></Carousel>
+        <Carousel Title="CyberPunk" filter="CyberPunk"  mode = "1"></Carousel>
        
       </div>
       <Footer />

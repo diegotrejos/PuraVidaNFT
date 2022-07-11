@@ -10,7 +10,7 @@ const Carousel = (props) => {
   const [data, setNFTs] = useState([]);
 
   const fetchnfts = async () => {
-    const nftsFetch = await fetch('http://localhost:7500/nft/getNFTs');
+    const nftsFetch = await fetch("http://localhost:7500/nft/getNFTs");
     const nftsJSON = await nftsFetch.json();
     setNFTs(nftsJSON);
   };
@@ -127,9 +127,7 @@ const Carousel = (props) => {
             return (
               <div
                 key={index}
-                className={`carousel-item text-center relative w-${
-                  props.size || 80
-                }  h-${props.size || 80} snap-start`}
+                className={`carousel-item text-center relative w- 80 h-80 snap-start`}
               >
                 <a
                   onClick={() =>
