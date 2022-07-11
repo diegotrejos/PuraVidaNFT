@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-const nftSlice = createSlice({
+const productSlice = createSlice({
     name: 'nft',
     initialState: {
         success: false,
@@ -48,7 +48,7 @@ const nftSlice = createSlice({
     }
 });
 
-export const { cleanState } = nftSlice.actions;
+export const { cleanState } = productSlice.actions;
 
 export const createProduct = createAsyncThunk('products/createProduct', async ({ product, productPicture }) => {
     const formData = new FormData();
@@ -97,4 +97,4 @@ export const getNFTs = createAsyncThunk('nft/getNFTs', async (params, { getState
 });
 
 
-export default nftSlice.reducer;
+export default productSlice.reducer;

@@ -55,9 +55,9 @@ const userRoles = [
 const NFTdata = [
     {
       id: "1",
-      name: "Magic Kingdom",
+      name: "Race",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft1.jpg",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/carro.webp",
       price: "7.26",
       author: "Beeple",
       likes: 1040,
@@ -67,7 +67,7 @@ const NFTdata = [
       id: "2",
       name: "Setting Sun",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft2.jpg",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/carro.webp",
       price: "7.26",
       author: "Beeple",
       likes: 13200,
@@ -78,7 +78,7 @@ const NFTdata = [
       name: "Electric City",
       author: "Beeple",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft3.jpg",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft2.jpg",
       price: "7.26",
       likes: 50,
       category: "CyberPunk",
@@ -89,7 +89,7 @@ const NFTdata = [
       name: "Everydays — The First 5000 Days",
       author: "Beeple",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft4.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft3.jpg",
       price: "7.26",
       likes: 441,
       category: "Ficcion",
@@ -98,7 +98,7 @@ const NFTdata = [
       id: "5",
       name: "Cyberpunk",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft5.jpg",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft9.png",
       price: "0.02",
       author: "Artyx_08",
       likes: 182,
@@ -108,7 +108,7 @@ const NFTdata = [
       id: "6",
       name: "Bored Ape #1837",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft6.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft5.jpg",
       price: "7.26",
       likes: 871,
       category: "Fantasía",
@@ -117,7 +117,7 @@ const NFTdata = [
       id: "7",
       name: "Bull #64",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft7.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft10.png",
       price: "7.26",
       likes: 6414,
       category: "Fantasía",
@@ -127,7 +127,7 @@ const NFTdata = [
       id: "8",
       name: "Solange",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft8.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft4.png",
       price: "2.4",
       author: "CyberBrokers",
       likes: 7431,
@@ -137,7 +137,7 @@ const NFTdata = [
       id: "9",
       name: "Delysid Kiddos #571",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft9.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft7.png",
       price: "7.26",
       author: "Delysid Kiddos",
       likes: 132,
@@ -147,7 +147,7 @@ const NFTdata = [
       id: "10",
       name: "Azuki #654",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/nft10.png",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft8.png",
       price: "11",
       author: "Azuki",
       likes: 87200,
@@ -167,7 +167,7 @@ const NFTdata = [
       id: "12",
       name: "Bull #3152",
       image:
-        "https://ci0137.s3.amazonaws.com/NFT/nfts/carro.webp",
+      "https://ci0137.s3.amazonaws.com/NFT/nfts/nft6.png",
       price: "7.26",
       likes: 144,
       category: "Fantasía",
@@ -252,5 +252,5 @@ module.exports = {
     NFTlikes,
     recoveryCodes,
     wallet,
-    myNFTs
+    myNFTs,
 }

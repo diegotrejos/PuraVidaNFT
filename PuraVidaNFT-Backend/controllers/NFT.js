@@ -62,6 +62,38 @@ exports.getNFTs = async (req, res) => {
   }
 };
 
+ exports.getMyNFTs = async (req, res) => {
+  try {
+    const userPayload = req.body;
+    const NFT = data.NFTdata;
+
+    let nfts;
+    for (let i = 0; i < data.myNFTs.length; i++) {
+      if (data.myNFTs[i].idUser == userPayload.idUser) {
+        nfts = data.myNFTs[i].NFTs;
+      }
+    }
+
+    if (nfts == undefined){
+      res.status(404).send("Usuario sin NFT en posesión.");
+      return;
+    }
+
+    let result;
+    for (let i = 0; i < nfts.length; i++) {
+      for (let j = 0; j < NFT.length; i++) {
+        if (nfts[i] == NFT[j].id) {
+          result.push(NFT[j]);
+        }
+      }
+    }
+
+    res.json(result);
+  } catch (error) {
+    res.status(500).send("Server error: " + error);
+  }
+};
+
 exports.buyNFT = async (req, res) => {
   try {
     console.log("Entra a buyNFT");

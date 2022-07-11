@@ -221,7 +221,7 @@ export default function Navbar(props) {
                           </li>
                           <li>
                             <a
-                              href="/editaccount"
+                              href="/mynft"
                               className="block px-4 py-2 hover:bg-gray-100"
                             >
                               Mis NFT
